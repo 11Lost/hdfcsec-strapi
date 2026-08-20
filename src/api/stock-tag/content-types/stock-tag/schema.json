@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stock_tags",
+  "info": {
+    "singularName": "stock-tag",
+    "pluralName": "stock-tags",
+    "displayName": "stockTag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "stock": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::stock.stock",
+      "inversedBy": "stock_tags"
+    }
+  }
+}

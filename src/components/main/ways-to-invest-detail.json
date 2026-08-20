@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_main_ways_to_invest_details",
+  "info": {
+    "displayName": "WaysToInvestDetail"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "detailsBanner": {
+      "type": "component",
+      "component": "main.home-banner",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

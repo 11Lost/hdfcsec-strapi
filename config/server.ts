@@ -9,6 +9,11 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Server =>
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
+  // mcp: {
+  //   enabled: true,
+  //   connectTimeoutMs: 10000, // 10 seconds
+  //   requestTimeoutMs: 120000, // 2 minutes
+  // },
 });
 
 export default config;

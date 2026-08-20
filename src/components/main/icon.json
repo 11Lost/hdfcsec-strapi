@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_main_icons",
+  "info": {
+    "displayName": "Icon"
+  },
+  "options": {},
+  "attributes": {
+    "iconImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "iconTitla": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

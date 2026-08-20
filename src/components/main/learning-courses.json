@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_main_learning_courses",
+  "info": {
+    "displayName": "LearningCourses",
+    "icon": "chartPie"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "learning_courses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::learning-course.learning-course"
+    }
+  },
+  "config": {}
+}

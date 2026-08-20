@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_functional_tags_buttons",
+  "info": {
+    "displayName": "Button",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "link": {
+      "type": "text"
+    },
+    "functionName": {
+      "type": "string"
+    },
+    "style": {
+      "type": "json"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "className": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

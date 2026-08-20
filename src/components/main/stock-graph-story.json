@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_main_stock_graph_stories",
+  "info": {
+    "displayName": "stockGraphStory",
+    "icon": "chartBubble"
+  },
+  "options": {},
+  "attributes": {
+    "Header": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "disclaimer": {
+      "type": "text"
+    },
+    "ComponentName": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

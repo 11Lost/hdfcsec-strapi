@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_menus_menus",
+  "info": {
+    "displayName": "menu"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subMenus": {
+      "type": "component",
+      "component": "menus.sub-menus",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

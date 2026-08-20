@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "learning_courses",
+  "info": {
+    "singularName": "learning-course",
+    "pluralName": "learning-courses",
+    "displayName": "LearningCourse"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "discount": {
+      "type": "decimal"
+    },
+    "tax": {
+      "type": "decimal"
+    },
+    "question_and_answers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question-and-answer.question-and-answer",
+      "mappedBy": "learning_course"
+    }
+  }
+}

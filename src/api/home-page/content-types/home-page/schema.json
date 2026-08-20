@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "HomePage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "HomeBanner": {
+      "type": "component",
+      "component": "main.home-banner",
+      "repeatable": false
+    },
+    "WaysToInvestSection": {
+      "type": "component",
+      "component": "main.ways-to-invest-section",
+      "repeatable": false
+    },
+    "stockGraphStory": {
+      "type": "component",
+      "component": "main.stock-graph-story",
+      "repeatable": false
+    },
+    "ourProduct": {
+      "type": "component",
+      "component": "main.our-product",
+      "repeatable": false
+    },
+    "StockCalendar": {
+      "type": "component",
+      "component": "main.calendar",
+      "repeatable": false
+    },
+    "expectResult": {
+      "type": "component",
+      "component": "main.expect-result",
+      "repeatable": false
+    },
+    "LearningCourses": {
+      "type": "component",
+      "component": "main.learning-courses",
+      "repeatable": false
+    },
+    "CountSection": {
+      "type": "component",
+      "component": "main.count-section",
+      "repeatable": false
+    }
+  }
+}

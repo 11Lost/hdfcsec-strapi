@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "question_and_answers",
+  "info": {
+    "singularName": "question-and-answer",
+    "pluralName": "question-and-answers",
+    "displayName": "QuestionAndAnswer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Question": {
+      "type": "string"
+    },
+    "Answer": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "learning_course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::learning-course.learning-course",
+      "inversedBy": "question_and_answers"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Footer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "className": {
+      "type": "string"
+    },
+    "style": {
+      "type": "json"
+    },
+    "Icon": {
+      "type": "component",
+      "component": "main.icon",
+      "repeatable": true
+    },
+    "footerBtns": {
+      "type": "component",
+      "component": "functional-tags.button",
+      "repeatable": true
+    },
+    "footerMenu": {
+      "type": "component",
+      "component": "menus.menu",
+      "repeatable": true
+    },
+    "footerHtmlContent": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "disclaimer": {
+      "type": "string"
+    }
+  }
+}

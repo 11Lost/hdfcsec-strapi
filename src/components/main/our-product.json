@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_main_our_products",
+  "info": {
+    "displayName": "OurProduct",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "our_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::our-product.our-product"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "Header"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "icon": {
+      "type": "component",
+      "component": "main.icon",
+      "repeatable": false
+    },
+    "ctaButtons": {
+      "type": "component",
+      "component": "functional-tags.button",
+      "repeatable": true
+    },
+    "menu": {
+      "type": "component",
+      "component": "menus.menu",
+      "repeatable": true
+    },
+    "headerTop": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    }
+  }
+}

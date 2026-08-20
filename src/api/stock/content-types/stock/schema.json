@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stocks",
+  "info": {
+    "singularName": "stock",
+    "pluralName": "stocks",
+    "displayName": "Stock"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "reports": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::report.report",
+      "mappedBy": "stocks"
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "StockAdvice": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "RiskOverview": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "FandO": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "CompanyOverview": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "CompanyDetails": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "FAQ": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "stock_tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::stock-tag.stock-tag",
+      "mappedBy": "stock"
+    }
+  }
+}

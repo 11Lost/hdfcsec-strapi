@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_main_banners",
+  "info": {
+    "displayName": "BannerItems"
+  },
+  "options": {},
+  "attributes": {
+    "bannerContent": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "BannerImg": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "BannerBtn": {
+      "type": "component",
+      "component": "functional-tags.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

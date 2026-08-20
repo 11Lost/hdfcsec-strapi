@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_main_count_sections",
+  "info": {
+    "displayName": "CountSection"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "counts": {
+      "type": "component",
+      "component": "main.count-cont",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

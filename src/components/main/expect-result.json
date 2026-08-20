@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_main_expect_results",
+  "info": {
+    "displayName": "ExpectResult"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "reports": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::report.report"
+    },
+    "bottomBanner": {
+      "type": "component",
+      "component": "main.banner",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

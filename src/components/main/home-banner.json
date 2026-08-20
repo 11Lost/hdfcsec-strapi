@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_main_home_banners",
+  "info": {
+    "displayName": "BannerCont",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "className": {
+      "type": "string"
+    },
+    "style": {
+      "type": "json"
+    },
+    "Banneritems": {
+      "type": "component",
+      "component": "main.banner",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_menus_sub_menus",
+  "info": {
+    "displayName": "subMenus",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "MenuLink": {
+      "type": "component",
+      "component": "menus.menu-link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

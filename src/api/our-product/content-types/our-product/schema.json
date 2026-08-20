@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "our_products",
+  "info": {
+    "singularName": "our-product",
+    "pluralName": "our-products",
+    "displayName": "OurProduct"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

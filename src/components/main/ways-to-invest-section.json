@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_main_ways_to_invest_sections",
+  "info": {
+    "displayName": "WaysToInvestSection"
+  },
+  "options": {},
+  "attributes": {
+    "WaysToInvestSectionBanner": {
+      "type": "component",
+      "component": "main.home-banner",
+      "repeatable": false
+    },
+    "WaysToInvestDetail": {
+      "type": "component",
+      "component": "main.ways-to-invest-detail",
+      "repeatable": false
+    },
+    "bottombanner": {
+      "type": "component",
+      "component": "main.banner",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
