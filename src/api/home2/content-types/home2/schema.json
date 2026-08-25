@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "home2s",
+  "info": {
+    "singularName": "home2",
+    "pluralName": "home2s",
+    "displayName": "Home2"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}

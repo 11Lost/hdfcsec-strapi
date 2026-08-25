@@ -598,6 +598,31 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHome2Home2 extends Struct.SingleTypeSchema {
+  collectionName: 'home2s';
+  info: {
+    displayName: 'Home2';
+    pluralName: 'home2s';
+    singularName: 'home2';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home2.home2'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    text: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLearningCourseLearningCourse
   extends Struct.CollectionTypeSchema {
   collectionName: 'learning_courses';
@@ -1370,6 +1395,7 @@ declare module '@strapi/strapi' {
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::home2.home2': ApiHome2Home2;
       'api::learning-course.learning-course': ApiLearningCourseLearningCourse;
       'api::our-product.our-product': ApiOurProductOurProduct;
       'api::question-and-answer.question-and-answer': ApiQuestionAndAnswerQuestionAndAnswer;
