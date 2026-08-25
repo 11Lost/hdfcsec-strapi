@@ -1,0 +1,152 @@
+'use client';
+
+import { STRAPI_BASE } from '@/lib/api';
+
+interface FooterMenuLink {
+  label: string;
+  link?: string;
+  target?: string;
+}
+
+interface FooterSubMenu {
+  title?: string;
+  link?: string;
+  MenuLink?: FooterMenuLink[];
+}
+
+interface FooterMenu {
+  title: string;
+  subMenus?: FooterSubMenu[];
+}
+
+interface FooterBtn {
+  label: string;
+  link?: string;
+  target?: string;
+  icon?: { url: string };
+  functionName?: string;
+}
+
+export interface FooterData {
+  Icon?: { iconImg?: { url: string } }[];
+  disclaimer?: string;
+  footerBtns?: FooterBtn[];
+  footerMenu?: FooterMenu[];
+  footerHtmlContent?: string;
+}
+
+function buildUrl(link?: string): string {
+  if (!link) return '#';
+  if (
+    link.startsWith('http://') ||
+    link.startsWith('https://') ||
+    link.startsWith('mailto:') ||
+    link.startsWith('tel:') ||
+    link.startsWith('#')
+  ) {
+    return link;
+  }
+  return '/' + link.replace(/^\/+/, '');
+}
+
+interface FooterClientProps {
+  data: FooterData | null;
+}
+
+export default function FooterClient({ data }: FooterClientProps) {
+  const logoUrl = data?.Icon?.[0]?.iconImg?.url
+    ? STRAPI_BASE + data.Icon[0].iconImg.url
+    : '/images/hdfc_white_logo.svg';
+
+  const quickLinks = data?.footerBtns || [];
+  const menus = data?.footerMenu || [];
+
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <div className="footer-top">
+          <div className="footer-logo">
+            <div className="footer-logo-placeholder">
+              <img
+                src={logoUrl}
+                alt="HDFC Securities"
+                width={180}
+                height={40}
+              />
+            </div>
+          </div>
+          <p
+            className="footer-tagline"
+            dangerouslySetInnerHTML={{
+              __html:
+                data?.disclaimer ||
+                'A trusted partner for your investment journey since 1987.<br>SEBI registered and committed to helping you achieve your financial goals.',
+            }}
+          />
+        </div>
+
+        <div className="footer-quick-links">
+          {quickLinks.map((btn, i) => {
+            const iconUrl = btn.icon?.url
+              ? STRAPI_BASE + btn.icon.url
+              : '';
+            return (
+              <a
+                key={i}
+                href={buildUrl(btn.link)}
+                className="footer-quick-link"
+                target={btn.target}
+              >
+                {iconUrl && (
+                  <img
+                    src={iconUrl}
+                    alt={btn.label}
+                    className="footer-quick-link-icon"
+                    loading="lazy"
+                  />
+                )}
+                {btn.label}
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="footer-columns">
+          {menus.map((menu, i) => (
+            <div key={i}>
+              <h4 className="footer-column-title">{menu.title}</h4>
+              <ul className="footer-column-list">
+                {menu.subMenus?.map((sub, j) => {
+                  if (sub.MenuLink && sub.MenuLink.length) {
+                    return sub.MenuLink.map((link, k) => (
+                      <li key={k}>
+                        <a
+                          href={buildUrl(link.link)}
+                          target={link.target}
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ));
+                  }
+                  return (
+                    <li key={j}>
+                      <a href={buildUrl(sub.link)}>{sub.title}</a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="footer-details"
+          dangerouslySetInnerHTML={{
+            __html: data?.footerHtmlContent || '',
+          }}
+        />
+      </div>
+    </footer>
+  );
+}

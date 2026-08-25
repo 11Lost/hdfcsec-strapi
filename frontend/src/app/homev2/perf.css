@@ -1,0 +1,57 @@
+/* Performance CSS for homev2 - CLS fixes */
+
+/* Prevent market panel from shifting when indices load */
+.market-panel {
+  min-height: 380px;
+}
+
+/* Prevent investing section from shifting when Swiper initializes */
+.investing-swiper {
+  min-height: 500px;
+}
+
+/* Prevent product grid from shifting */
+.products-grid {
+  min-height: 120px;
+}
+
+/* Prevent insights accordion from shifting */
+.insights-accordion {
+  min-height: 200px;
+}
+
+/* Prevent learn slider from shifting */
+.course-swiper {
+  min-height: 300px;
+}
+
+/* Prevent trust stats from shifting */
+.trust-stats {
+  min-height: 120px;
+}
+
+/* Ensure all images have aspect ratio to prevent CLS */
+.investing-card-image img,
+.way-card-image img,
+.product-icon img,
+.card-expanded-image img {
+  aspect-ratio: 16/9;
+}
+
+/* Ensure toast doesn't cause CLS - reserve space */
+.toast-popup {
+  position: fixed;
+  bottom: -130px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.toast-popup.visible {
+  bottom: 0;
+}
+
+/* Hero bg image fallback with aspect ratio */
+.hero-bg-image {
+  aspect-ratio: 16/9;
+}
