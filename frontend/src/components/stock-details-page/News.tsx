@@ -2,13 +2,47 @@
 
 export default function News({ data }: { data?: any }) {
   return (
-    <div className="overview-card" style={{ padding: '24px', border: '1px solid #E5E7EB', borderRadius: '12px', background: 'white' }}>
-      <h3 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>News</h3>
-      {data?.News ? (
-        <div dangerouslySetInnerHTML={{ __html: data.News }} />
-      ) : (
-        <p style={{ color: '#64748B' }}>No recent news.</p>
-      )}
+    <div className="company-news-card">
+      <h3 className="company-news-title">
+        News
+      </h3>
+      <div className="company-news-list">
+        <div className="company-news-item">
+          <p className="company-news-headline">
+            Reliance Resumes Russian Oil Imports via Compliant Routes, Maintains Jamnagar Refinery Operations
+          </p>
+          <p>
+            <span className="company-news-date">2 days ago</span>
+          </p>
+        </div>
+        <div className="company-news-item">
+          <p className="company-news-headline">
+            Reliance Resumes Russian Oil Imports via Compliant Routes
+          </p>
+          <p>
+            <span className="company-news-date">2 days ago</span>
+          </p>
+        </div>
+        <div className="company-news-item">
+          <p className="company-news-headline">
+            Reliance Resumes Russian Oil Imports via Compliant Routes, Maintains Jamnagar
+          </p>
+          <p>
+            <span className="company-news-date">4 days ago</span>
+          </p>
+        </div>
+        <div className="company-news-item">
+          <p className="company-news-headline">
+            Reliance Resumes Russian Oil Imports via Compliant Routes, Maintains Jamnagar Refinery Operations
+          </p>
+          <p>
+            <span className="company-news-date">6 days ago</span>
+          </p>
+        </div>
+      </div>
+      <p>
+        <a className="company-view-more" href="#">View More</a>
+      </p>
     </div>
   );
 }

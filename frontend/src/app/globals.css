@@ -718,23 +718,26 @@ body {
 
 @media (max-width: 768px) {
 
-    .header{
+    .header {
         padding: 16px 0 10px;
     }
-    .header-logo{
+
+    .header-logo {
         margin-right: auto;
     }
+
     .header-main-container {
         height: 60px;
         justify-content: end;
     }
 
-    .header-promo{
+    .header-promo {
         display: none !important;
     }
+
     .header-promo-text {
         font-size: 12px;
-        
+
     }
 
     .header-logo-25 {
@@ -750,8 +753,8 @@ body {
     .header-login {
         padding: 8px 14px;
         font-size: 12px;
-            background-color: var(--color-red);
-    color: var(--color-white);
+        background-color: var(--color-red);
+        color: var(--color-white);
     }
 
     .header-icon-btn {
@@ -1124,22 +1127,27 @@ body {
 }
 
 @media (max-width: 768px) {
-    .hero-bg-video{
+    .hero-bg-video {
         top: -5px;
     }
-    .hero-image{
+
+    .hero-image {
         height: auto;
     }
-    .hero-content{
+
+    .hero-content {
         padding-top: 50px;
         text-align: left;
     }
-    .market-panel{
+
+    .market-panel {
         margin: 0;
     }
-    .market-grid{
+
+    .market-grid {
         gap: 10px;
     }
+
     .market-grid {
         grid-template-columns: 1fr;
         display: flex;
@@ -1158,9 +1166,10 @@ body {
         max-height: 960px;
     }
 
-    .ticker-section{
+    .ticker-section {
         margin-top: 20px;
     }
+
     .hero-title {
         font-size: 32px;
         text-align: left;
@@ -1554,7 +1563,8 @@ body {
         flex-direction: column;
         gap: 10px;
     }
-    .product-name{
+
+    .product-name {
         font-size: 14px;
         font-weight: normal;
     }
@@ -2398,29 +2408,36 @@ body {
     .insights-header {
         margin-bottom: 20px;
     }
-    .insights-stocks{
+
+    .insights-stocks {
         margin-bottom: 10px;
     }
-    .insights-stocks-label{
+
+    .insights-stocks-label {
         font-size: 12px;
     }
-    .insights-stocks{
+
+    .insights-stocks {
         gap: 4px;
     }
-    .card-expanded-desc{
+
+    .card-expanded-desc {
         font-size: 12px;
         line-height: 14px;
         margin-bottom: 10px;
     }
-    .insights-link{
+
+    .insights-link {
         font-size: 12px;
     }
-    .card-expanded-image{
+
+    .card-expanded-image {
         right: 0;
         bottom: 0;
         justify-content: end;
     }
-    .card-expanded-image img{
+
+    .card-expanded-image img {
         max-height: none;
         max-width: 150px;
     }
@@ -2814,8 +2831,9 @@ body {
 .course-swiper .swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
     opacity: 0;
 }
+
 .course-swiper .swiper-slide.swiper-slide-active {
-	/* transition: 0.3s all;
+    /* transition: 0.3s all;
 	opacity: 1;
     scale: 0.9; */
     left: -10%;
@@ -2827,7 +2845,7 @@ body {
 }
 
 .course-swiper.swiper-3d .swiper-slide-shadow-left,
-.course-swiper.swiper-3d .swiper-slide-shadow-right{
+.course-swiper.swiper-3d .swiper-slide-shadow-right {
     background: transparent;
 }
 
@@ -2840,6 +2858,7 @@ body {
     left: 44%;
     opacity: 0.6;
 }
+
 .course-swiper.swiper-3d .swiper-slide-shadow-left,
 .course-swiper.swiper-3d .swiper-slide-shadow-right {
     background: transparent;
@@ -3195,13 +3214,16 @@ body {
     .trust-stat:last-child {
         padding-top: 0;
     }
-    .trust-header{
+
+    .trust-header {
         margin-bottom: 20px;
     }
+
     .trust-stat-value {
         font-size: 36px;
     }
-    .trust-stats{
+
+    .trust-stats {
         gap: 0;
     }
 }
@@ -4270,9 +4292,9 @@ body {
 
     .footer-quick-link {
         min-width: 150px;
-            font-size: 12px;
-                padding: 10px;
-                font-weight: normal;
+        font-size: 12px;
+        padding: 10px;
+        font-weight: normal;
     }
 
     .footer-columns {
@@ -5739,7 +5761,6 @@ body {
    =========================== */
 .company-top-grid {
     display: grid;
-    /* grid-template-columns: 1fr 380px; */
     gap: 24px;
     margin-bottom: 48px;
 }
@@ -6795,9 +6816,10 @@ body {
    Responsive Design
    =========================== */
 @media (max-width: 768px) {
-    .card-expanded-content{
+    .card-expanded-content {
         justify-content: start;
     }
+
     .faq-section {
         padding: 60px 0;
     }
@@ -6830,7 +6852,7 @@ body {
     .course-swiper .swiper-slide.swiper-slide-prev {
         left: 0
     }
-    
+
     .course-swiper .swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
         opacity: 1;
     }
@@ -6838,12 +6860,13 @@ body {
     .course-swiper .swiper-slide.swiper-slide-active {
         left: 0;
     }
-    .course-swiper  .card{
+
+    .course-swiper .card {
         width: 100%;
         max-width: inherit;
         min-height: 350px;
         scale: 1;
         min-width: 100%;
     }
-    
+
 }

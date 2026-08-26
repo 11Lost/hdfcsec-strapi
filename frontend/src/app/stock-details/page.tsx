@@ -19,8 +19,8 @@ export default async function StockDetailsPage() {
       <StockHero data={data} />
       <StockOverview />
       <Overview data={data} />
-      
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: '75% calc(25% - 24px)', gap: '24px', paddingBottom: '40px' }}>
+
+      <div className="container" style={{ display: 'grid', gridTemplateColumns: '65% calc(35% - 24px)', gap: '24px', paddingBottom: '40px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <CompanyOverview data={data} />
           <ReturnCalculator data={data} />
