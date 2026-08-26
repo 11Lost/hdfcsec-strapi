@@ -1,4 +1,4 @@
-export const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'https://cms.hdfcsec.com';
+export const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'https://hdfc-securities-api.idealake.com';
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.hdfcsec.com';
 
