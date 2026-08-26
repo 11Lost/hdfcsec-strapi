@@ -1,6 +1,6 @@
 'use client';
 
-export default function Overview() {
+export default function Overview({ data }: { data?: any }) {
   return (
     <section id="overview" className="overview-section">
       <div className="container">
@@ -120,9 +120,9 @@ export default function Overview() {
           </div>
 
           <div className="overview-right">
-            <div className="overview-card" id="StockAdvice" />
-            <div className="overview-card" id="RiskOverview" />
-            <div className="overview-card" id="FandO" />
+            <div className="overview-card" id="StockAdvice" dangerouslySetInnerHTML={data?.StockAdvice ? { __html: data.StockAdvice } : undefined} />
+            <div className="overview-card" id="RiskOverview" dangerouslySetInnerHTML={data?.RiskOverview ? { __html: data.RiskOverview } : undefined} />
+            <div className="overview-card" id="FandO" dangerouslySetInnerHTML={data?.FandO ? { __html: data.FandO } : undefined} />
           </div>
         </div>
       </div>
