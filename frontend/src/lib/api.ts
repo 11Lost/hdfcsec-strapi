@@ -30,7 +30,11 @@ export async function fetchStockDetails() {
 export async function fetchNSEIndices() {
   try {
     const res = await fetch('https://www.nseindia.com/api/allIndices', {
-      headers: { Accept: 'application/json, text/plain, */*' },
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
