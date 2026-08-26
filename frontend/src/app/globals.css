@@ -712,6 +712,7 @@ body {
     .header-open-account {
         padding: 8px 14px;
         font-size: 12px;
+        display: none !important;
     }
 
     .header-login {
@@ -722,11 +723,13 @@ body {
     .header-icon-btn {
         width: 36px;
         height: 36px;
+        display: none;
     }
 }/* Hero Section Styles */
 .hero {
     background: #FFF;
     min-height: 600px;
+    max-height:  750px;
     padding: 105px 0 0;
     position: relative;
     overflow: hidden;
@@ -795,6 +798,9 @@ body {
     position: relative;
     width: 450px;
     height: 400px;
+    justify-content: end;
+    position: relative;
+    display: flex;
 }
 
 .hero-image img {
