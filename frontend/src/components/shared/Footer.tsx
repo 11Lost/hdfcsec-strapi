@@ -70,7 +70,7 @@ export default async function Footer() {
         <div className="footer-top">
           <div className="footer-logo">
             <div className="footer-logo-placeholder">
-              <Image src={logoUrl} alt="HDFC Securities" width={160} height={40} style={{ width: '100%', height: 'auto' }} />
+              <img src={logoUrl} alt="HDFC Securities" width={160} height={40} style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
           <p
@@ -96,7 +96,7 @@ export default async function Footer() {
                 target={btn.target}
               >
                 {iconUrl && (
-                  <Image
+                  <img
                     src={iconUrl}
                     alt={btn.label}
                     className="footer-quick-link-icon"

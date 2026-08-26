@@ -35,7 +35,7 @@ export default function Products({ data }: ProductsProps) {
               <a key={i} href="#" className="product-card">
                 <div className="product-icon">
                   {img && (
-                    <Image
+                    <img
                       src={getStrapiMediaUrl(img.url)}
                       alt={img.alternativeText || product.title || ''}
                       width={56}

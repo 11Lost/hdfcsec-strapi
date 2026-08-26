@@ -162,11 +162,9 @@ export default function Investing({ data }: InvestingProps) {
                     <div className="investing-card">
                       <div className="investing-card-image">
                         {img && (
-                          <Image
+                          <img
                             src={getStrapiMediaUrl(img.url)}
                             alt={img.alternativeText || 'Investing Slide'}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 395px"
                             style={{ objectFit: 'cover' }}
                             loading="lazy"
                           />
@@ -196,16 +194,14 @@ export default function Investing({ data }: InvestingProps) {
                     <p className="way-card-description">{item._parsedDescription}</p>
                   )}
                   <div className="way-card-image">
-                  {img && (
-                    <Image
-                      src={getStrapiMediaUrl(img.url)}
-                      alt={img.alternativeText || 'Way card'}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 250px"
-                      style={{ objectFit: 'contain', objectPosition: 'bottom' }}
-                      loading="lazy"
-                    />
-                  )}
+                    {img && (
+                      <img
+                        src={getStrapiMediaUrl(img.url)}
+                        alt={img.alternativeText || 'Way card'}
+                        style={{ objectFit: 'contain', objectPosition: 'bottom' }}
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                 </div>
               );
@@ -226,7 +222,7 @@ export default function Investing({ data }: InvestingProps) {
           <div className="toast-content">
             <div className="toast-icon">
               {bb.BannerImg && (
-                <Image src={getStrapiMediaUrl(bb.BannerImg.url)} alt="Toast Icon" width={24} height={24} style={{ width: 24, height: 24, objectFit: 'contain' }} />
+                <img src={getStrapiMediaUrl(bb.BannerImg.url)} alt="Toast Icon" width={24} height={24} style={{ width: 24, height: 24, objectFit: 'contain' }} />
               )}
             </div>
             <div className="toast-text" dangerouslySetInnerHTML={{ __html: stripImgTags(bb.bannerContent || '') }} />

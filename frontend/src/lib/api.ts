@@ -115,6 +115,15 @@ export async function fetchLosers() {
 
 export function getStrapiMediaUrl(path?: string): string {
   if (!path) return '';
-  if (path.startsWith('http')) return path;
+  if (path.startsWith('http')) {
+    try {
+      const url = new URL(path);
+      console.log(`${STRAPI_BASE}${url.pathname}${url.search}`);
+
+      return `${STRAPI_BASE}${url.pathname}${url.search}`;
+    } catch (e) {
+      return path;
+    }
+  }
   return STRAPI_BASE + path;
 }

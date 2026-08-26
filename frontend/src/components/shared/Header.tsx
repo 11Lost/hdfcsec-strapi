@@ -30,13 +30,13 @@ export default function Header({ headerData }: { headerData?: any }) {
     href: item.link || '#',
     subMenus: item.subMenus || [],
   })) || [
-    { label: 'Markets', href: '#' },
-    { label: 'Products', href: '#' },
-    { label: 'Research', href: '#' },
-    { label: 'Learn', href: '#' },
-    { label: 'Tools', href: '#' },
-    { label: 'Support', href: '#' },
-  ];
+      { label: 'Markets', href: '#' },
+      { label: 'Products', href: '#' },
+      { label: 'Research', href: '#' },
+      { label: 'Learn', href: '#' },
+      { label: 'Tools', href: '#' },
+      { label: 'Support', href: '#' },
+    ];
 
   const headerTopHtml = headerData?.headerTop || '';
   const ctaBtn1 = headerData?.ctaButtons?.[0];
@@ -60,7 +60,7 @@ export default function Header({ headerData }: { headerData?: any }) {
       <div className="header-main">
         <div className="header-main-container">
           <Link href="/" className="header-logo header-logo-large">
-            <Image src={logoUrl} alt={logoAlt} width={140} height={40} priority style={{ width: 140, height: 'auto' }} />
+            <img src={logoUrl} alt={logoAlt} width={140} height={40} style={{ width: 140, height: 'auto' }} />
           </Link>
 
           <nav className="header-nav" id="headerNav">
