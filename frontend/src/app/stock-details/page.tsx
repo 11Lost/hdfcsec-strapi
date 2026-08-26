@@ -6,18 +6,22 @@ import PeerComparison from '@/components/stock-details-page/PeerComparison';
 import ReturnCalculator from '@/components/stock-details-page/ReturnCalculator';
 import ResearchAnalysis from '@/components/stock-details-page/ResearchAnalysis';
 import FAQ from '@/components/stock-details-page/FAQ';
+import { fetchStockDetails } from '@/lib/api';
 
-export default function StockDetailsPage() {
+export default async function StockDetailsPage() {
+  const stockDetails = await fetchStockDetails();
+  const data = stockDetails.data || {};
+
   return (
     <>
-      <StockHero />
+      <StockHero data={data} />
       <StockOverview />
-      <Overview />
-      <CompanyOverview />
+      <Overview data={data} />
+      <CompanyOverview data={data} />
       <ReturnCalculator />
       <PeerComparison />
       <ResearchAnalysis />
-      <FAQ />
+      <FAQ data={data} />
     </>
   );
 }

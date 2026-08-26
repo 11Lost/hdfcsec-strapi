@@ -1,22 +1,38 @@
 'use client';
 
-export default function StockHero() {
+import { getStrapiMediaUrl } from '@/lib/api';
+
+export default function StockHero({ data }: { data?: any }) {
   return (
     <section className="stock-hero">
       <div className="container">
         <div className="stock-hero-content">
           <div className="stock-hero-company">
-            <div className="stock-hero-logo">
-              <svg viewBox="0 0 24 24" fill="white">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z" />
-              </svg>
-            </div>
+            {data?.icon?.url ? (
+              <div 
+                className="stock-hero-logo" 
+                style={{ 
+                  backgroundImage: `url(${getStrapiMediaUrl(data.icon.url)})`, 
+                  backgroundSize: 'cover', 
+                  backgroundPosition: 'center', 
+                  backgroundRepeat: 'no-repeat', 
+                  border: 'none',
+                  backgroundColor: 'transparent'
+                }}
+              />
+            ) : (
+              <div className="stock-hero-logo">
+                <svg viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z" />
+                </svg>
+              </div>
+            )}
             <div className="stock-hero-details">
               <h1 id="dyn-stock-name" className="stock-hero-name">
-                Reliance Industries Pvt Ltd
+                {data?.Name || 'Reliance Industries Pvt Ltd'}
               </h1>
               <p className="stock-hero-tagline">
-                India&apos;s largest diversified business group
+                {data?.subTitle || "India's largest diversified business group"}
               </p>
               <div className="stock-hero-tags" />
             </div>
