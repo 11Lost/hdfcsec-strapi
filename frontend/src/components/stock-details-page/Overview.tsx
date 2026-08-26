@@ -16,29 +16,29 @@ ChartJS.register(
   Tooltip
 );
 
-const generateRandomMarketData = () => {
-  const basePrice = 1450 + Math.random() * 10;
-  
-  const generateRows = (isAsk: boolean) => {
-    const rows = [];
-    for (let i = 0; i < 5; i++) {
-      const priceOffset = isAsk ? i * 0.5 : -i * 0.5;
-      const price = basePrice + priceOffset;
-      const quantity = Math.floor(Math.random() * 20) + 1;
-      const width = Math.floor(Math.random() * 50) + 20;
-      rows.push({ price, quantity, width });
-    }
-    return rows;
-  };
+// const generateRandomMarketData = () => {
+//   const basePrice = 1450 + Math.random() * 10;
 
-  const bids = generateRows(false);
-  const asks = generateRows(true);
-  const bidTotal = bids.reduce((sum, r) => sum + r.quantity, 0);
-  const askTotal = asks.reduce((sum, r) => sum + r.quantity, 0);
-  const buyPercent = Math.floor(Math.random() * 40) + 30;
+//   const generateRows = (isAsk: boolean) => {
+//     const rows = [];
+//     for (let i = 0; i < 5; i++) {
+//       const priceOffset = isAsk ? i * 0.5 : -i * 0.5;
+//       const price = basePrice + priceOffset;
+//       const quantity = Math.floor(Math.random() * 20) + 1;
+//       const width = Math.floor(Math.random() * 50) + 20;
+//       rows.push({ price, quantity, width });
+//     }
+//     return rows;
+//   };
 
-  return { bids, asks, bidTotal, askTotal, buyPercent };
-};
+//   const bids = generateRows(false);
+//   const asks = generateRows(true);
+//   const bidTotal = bids.reduce((sum, r) => sum + r.quantity, 0);
+//   const askTotal = asks.reduce((sum, r) => sum + r.quantity, 0);
+//   const buyPercent = Math.floor(Math.random() * 40) + 30;
+
+//   return { bids, asks, bidTotal, askTotal, buyPercent };
+// };
 
 const financeData = {
   labels: ['2021', '2022', '2023', '2024', '2025'],
@@ -104,14 +104,32 @@ const valuePlugin = {
 };
 
 export default function Overview({ data }: { data?: any }) {
-  const [marketData, setMarketData] = useState(generateRandomMarketData());
+  const [marketData, setMarketData] = useState({
+    bids: [
+      { price: 1449.15, quantity: 250, width: 80 },
+      { price: 1449.10, quantity: 150, width: 50 },
+      { price: 1449.05, quantity: 80, width: 30 },
+      { price: 1449.00, quantity: 120, width: 45 },
+      { price: 1448.95, quantity: 60, width: 25 },
+    ],
+    asks: [
+      { price: 1450.00, quantity: 180, width: 60 },
+      { price: 1450.05, quantity: 90, width: 40 },
+      { price: 1450.10, quantity: 140, width: 55 },
+      { price: 1450.15, quantity: 70, width: 25 },
+      { price: 1450.20, quantity: 110, width: 45 },
+    ],
+    bidTotal: 660,
+    askTotal: 590,
+    buyPercent: 55,
+  });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMarketData(generateRandomMarketData());
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // setMarketData(generateRandomMarketData());
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <section id="overview" className="overview-section">
