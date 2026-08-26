@@ -8,9 +8,8 @@ const nextConfig: NextConfig = {
         hostname: 'hdfc-securities-api.idealake.com',
       },
       {
-        protocol: 'http',
-        hostname: '192.168.2.22',
-        port: '1337',
+        protocol: 'https',
+        hostname: 'hdfc-securities-api.idealake.com',
       },
     ],
   },

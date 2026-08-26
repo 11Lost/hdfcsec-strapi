@@ -697,12 +697,21 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    .header{
+        padding: 0 10px;
+    }
+    .header-logo{
+        margin-right: auto;
+    }
     .header-main-container {
         height: 60px;
+        justify-content: end;
     }
 
     .header-promo-text {
         font-size: 12px;
+        display: none
     }
 
     .header-logo-25 {
@@ -718,6 +727,8 @@ body {
     .header-login {
         padding: 8px 14px;
         font-size: 12px;
+            background-color: var(--color-red);
+    color: var(--color-white);
     }
 
     .header-icon-btn {
@@ -1079,17 +1090,20 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero-image{
+        height: auto;
+    }
+    .hero-content{
+        padding-top: 50px;
+        text-align: left;
+    }
     .market-panel{
         margin: 0;
-    }
-    .market-value {
-    line-height: 18px;
-    font-size: 18px;
     }
     .market-grid{
         gap: 10px;
     }
-        .market-grid {
+    .market-grid {
         grid-template-columns: 1fr;
         display: flex;
         flex-wrap: wrap;
@@ -1097,18 +1111,25 @@ body {
     }
     .market-item {
         width: 46%;
+        text-align: left;
     }
     .hero {
         padding: 60px 0 0;
         min-height: auto;
+        max-height: 960px;
     }
 
+    .ticker-section{
+        margin-top: 20px;
+    }
     .hero-title {
-        font-size: 36px;
+        font-size: 32px;
+        text-align: left;
     }
 
     .hero-subtitle {
-        font-size: 16px;
+        font-size: 14px;
+        text-align: left;
     }
 
     .market-grid {
