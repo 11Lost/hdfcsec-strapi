@@ -14,8 +14,8 @@ export default async function HomePage() {
   try {
     const res = await fetchHomePage();
     pageData = res.data;
-  } catch {
-    console.warn('[HomePage] Failed to fetch Strapi data');
+  } catch (error) {
+    console.warn('[HomePage] Failed to fetch Strapi data', error);
   }
 
   const heroBanner = pageData?.HomeBanner?.Banneritems?.[0];
