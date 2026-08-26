@@ -57,12 +57,29 @@ export default function Learn({ data }: LearnProps) {
         spaceBetween: 20,
         centeredSlides: true,
         loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false },
+        navigation: false,
+        effect: 'coverflow',
+        grabCursor: true,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2,
+            slideShadows: true
+        },
+        // autoplay: { delay: 4000, disableOnInteraction: false },
         pagination: {
           el: container.querySelector('.swiper-pagination') as HTMLElement,
           clickable: true,
         },
-        grabCursor: true,
+        breakpoints: {
+          560: {
+            slidesPerView: 1
+          },
+          1024: {
+            slidesPerView: 1.5
+          }
+        }
       });
     };
 
