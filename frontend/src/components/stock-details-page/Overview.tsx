@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -14,6 +15,30 @@ ChartJS.register(
   BarElement,
   Tooltip
 );
+
+const generateRandomMarketData = () => {
+  const basePrice = 1450 + Math.random() * 10;
+  
+  const generateRows = (isAsk: boolean) => {
+    const rows = [];
+    for (let i = 0; i < 5; i++) {
+      const priceOffset = isAsk ? i * 0.5 : -i * 0.5;
+      const price = basePrice + priceOffset;
+      const quantity = Math.floor(Math.random() * 20) + 1;
+      const width = Math.floor(Math.random() * 50) + 20;
+      rows.push({ price, quantity, width });
+    }
+    return rows;
+  };
+
+  const bids = generateRows(false);
+  const asks = generateRows(true);
+  const bidTotal = bids.reduce((sum, r) => sum + r.quantity, 0);
+  const askTotal = asks.reduce((sum, r) => sum + r.quantity, 0);
+  const buyPercent = Math.floor(Math.random() * 40) + 30;
+
+  return { bids, asks, bidTotal, askTotal, buyPercent };
+};
 
 const financeData = {
   labels: ['2021', '2022', '2023', '2024', '2025'],
@@ -79,6 +104,15 @@ const valuePlugin = {
 };
 
 export default function Overview({ data }: { data?: any }) {
+  const [marketData, setMarketData] = useState(generateRandomMarketData());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMarketData(generateRandomMarketData());
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="overview" className="overview-section">
       <div className="container">
@@ -100,21 +134,21 @@ export default function Overview({ data }: { data?: any }) {
                     <span>Bid Price</span>
                     <span>Quanity</span>
                   </div>
-                  {[20, 35, 15, 30, 50].map((w, i) => (
+                  {marketData.bids.map((row, i) => (
                     <div key={i} className="market-depth-row">
-                      <span className="market-depth-price">1453.93</span>
+                      <span className="market-depth-price">{row.price.toFixed(2)}</span>
                       <span className="market-depth-qty bid">
-                        {i === 1 ? '5' : ''}
+                        {row.quantity}
                       </span>
                       <div
                         className="market-depth-bar bid"
-                        style={{ width: `${w}%` }}
+                        style={{ width: `${row.width}%` }}
                       />
                     </div>
                   ))}
                   <div className="market-depth-total">
                     <span>Bid Total</span>
-                    <span>483</span>
+                    <span>{marketData.bidTotal}</span>
                   </div>
                 </div>
                 <div className="market-depth-table">
@@ -122,21 +156,21 @@ export default function Overview({ data }: { data?: any }) {
                     <span>Ask Price</span>
                     <span>Quanity</span>
                   </div>
-                  {[25, 40, 20, 35, 55].map((w, i) => (
+                  {marketData.asks.map((row, i) => (
                     <div key={i} className="market-depth-row">
-                      <span className="market-depth-price">1453.93</span>
+                      <span className="market-depth-price">{row.price.toFixed(2)}</span>
                       <span className="market-depth-qty ask">
-                        {i === 1 ? '5' : ''}
+                        {row.quantity}
                       </span>
                       <div
                         className="market-depth-bar ask"
-                        style={{ width: `${w}%` }}
+                        style={{ width: `${row.width}%` }}
                       />
                     </div>
                   ))}
                   <div className="market-depth-total">
-                    <span>Ask Price</span>
-                    <span>483</span>
+                    <span>Ask Total</span>
+                    <span>{marketData.askTotal}</span>
                   </div>
                 </div>
               </div>
@@ -146,11 +180,11 @@ export default function Overview({ data }: { data?: any }) {
                   <span className="order-qty-label">Sell Order Quantity</span>
                 </div>
                 <div className="order-qty-percentage">
-                  <span className="order-qty-percent">43%</span>
-                  <span className="order-qty-percent">57%</span>
+                  <span className="order-qty-percent">{marketData.buyPercent}%</span>
+                  <span className="order-qty-percent">{100 - marketData.buyPercent}%</span>
                 </div>
                 <div className="order-qty-progress">
-                  <div className="order-qty-fill" style={{ width: '43%' }} />
+                  <div className="order-qty-fill" style={{ width: `${marketData.buyPercent}%` }} />
                 </div>
               </div>
             </div>

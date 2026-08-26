@@ -5186,7 +5186,7 @@ body {
 
 .market-depth-table {
     flex: 1;
-    background-color: #F8FAFC;
+    background-color: #FFF;
     border-radius: 12px;
     border: 1px solid #E5E7EB;
     overflow: hidden;
@@ -5211,7 +5211,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 16px;
+    padding: 0 16px;
+    margin: 10px 0;
     border-bottom: 1px solid #F1F5F9;
     position: relative;
 }
@@ -5235,11 +5236,11 @@ body {
 }
 
 .market-depth-qty.bid {
-    color: #16A34A;
+    color: #259702;
 }
 
 .market-depth-qty.ask {
-    color: #DC2626;
+    color: #FF2B00;
 }
 
 /* Quantity Bar Background */
@@ -5248,16 +5249,17 @@ body {
     right: 0;
     top: 0;
     height: 100%;
-    opacity: 0.15;
+    /* opacity: 0.15; */
     border-radius: 0;
 }
 
 .market-depth-bar.bid {
-    background-color: #16A34A;
+    background-color: #ebf7ec;
+
 }
 
 .market-depth-bar.ask {
-    background-color: #DC2626;
+    background-color: #ffeeeb;
 }
 
 /* Total Row */
@@ -5737,7 +5739,7 @@ body {
    =========================== */
 .company-top-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    /* grid-template-columns: 1fr 380px; */
     gap: 24px;
     margin-bottom: 48px;
 }
