@@ -1,7 +1,4 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { STRAPI_BASE } from '@/lib/api';
+import { STRAPI_BASE, fetchFooter } from '@/lib/api';
 
 interface FooterMenuLink {
   label: string;
@@ -50,15 +47,14 @@ function buildUrl(link?: string): string {
   return '/' + link.replace(/^\/+/, '');
 }
 
-export default function Footer() {
-  const [footer, setFooter] = useState<FooterData | null>(null);
-
-  useEffect(() => {
-    fetch(`${STRAPI_BASE}/api/footer?pLevel=10`)
-      .then((r) => r.json())
-      .then((res) => setFooter(res?.data))
-      .catch((err) => console.error('Failed to load footer:', err));
-  }, []);
+export default async function Footer() {
+  let footer: FooterData | null = null;
+  try {
+    const res = await fetchFooter();
+    footer = res?.data as FooterData;
+  } catch (err) {
+    console.error('Failed to load footer:', err);
+  }
 
   const logoUrl = footer?.Icon?.[0]?.iconImg?.url
     ? STRAPI_BASE + footer.Icon[0].iconImg.url

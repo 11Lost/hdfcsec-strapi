@@ -31,34 +31,34 @@ export default async function HomePage() {
   }
   const waysToInvest = waysToInvestRaw
     ? {
-        ...waysToInvestRaw,
-        WaysToInvestDetail: waysToInvestRaw.WaysToInvestDetail
-          ? {
-              ...waysToInvestRaw.WaysToInvestDetail,
-              detailsBanner:
-                waysToInvestRaw.WaysToInvestDetail.detailsBanner
-                  ? {
-                      ...waysToInvestRaw.WaysToInvestDetail.detailsBanner,
-                      Banneritems:
-                        (
-                          waysToInvestRaw.WaysToInvestDetail.detailsBanner
-                            .Banneritems || []
-                        ).map((item: any) => ({
-                          ...item,
-                          _parsedTitle: extractFromHtml(
-                            item.bannerContent || '',
-                            'way-card-title'
-                          ),
-                          _parsedDescription: extractFromHtml(
-                            item.bannerContent || '',
-                            'way-card-description'
-                          ),
-                        })),
-                    }
-                  : undefined,
-            }
-          : undefined,
-      }
+      ...waysToInvestRaw,
+      WaysToInvestDetail: waysToInvestRaw.WaysToInvestDetail
+        ? {
+          ...waysToInvestRaw.WaysToInvestDetail,
+          detailsBanner:
+            waysToInvestRaw.WaysToInvestDetail.detailsBanner
+              ? {
+                ...waysToInvestRaw.WaysToInvestDetail.detailsBanner,
+                Banneritems:
+                  (
+                    waysToInvestRaw.WaysToInvestDetail.detailsBanner
+                      .Banneritems || []
+                  ).map((item: any) => ({
+                    ...item,
+                    _parsedTitle: extractFromHtml(
+                      item.bannerContent || '',
+                      'way-card-title'
+                    ),
+                    _parsedDescription: extractFromHtml(
+                      item.bannerContent || '',
+                      'way-card-description'
+                    ),
+                  })),
+              }
+              : undefined,
+        }
+        : undefined,
+    }
     : undefined;
   const ourProduct = pageData?.ourProduct;
 
@@ -70,37 +70,37 @@ export default async function HomePage() {
   // Pre-strip report descriptions for Insights
   const expectResult = pageData?.expectResult
     ? {
-        ...pageData.expectResult,
-        reports: (pageData.expectResult.reports || []).map((r: any) => ({
-          ...r,
-          _descText: r.description ? stripServerHtml(r.description) : '',
-        })),
-      }
+      ...pageData.expectResult,
+      reports: (pageData.expectResult.reports || []).map((r: any) => ({
+        ...r,
+        _descText: r.description ? stripServerHtml(r.description) : '',
+      })),
+    }
     : undefined;
 
   // Pre-strip course descriptions and pre-format dates for Learn
   const learningCourses = pageData?.LearningCourses
     ? {
-        ...pageData.LearningCourses,
-        learning_courses: (pageData.LearningCourses.learning_courses || []).map(
-          (c: any) => ({
-            ...c,
-            _descText: c.Description ? stripServerHtml(c.Description) : '',
-            _topics: (c.question_and_answers || [])
-              .filter((qa: any) => qa.Question && qa.createdAt)
-              .slice(0, 3)
-              .map((qa: any) => ({
-                question: qa.Question,
-                date: new Date(qa.createdAt).toLocaleDateString('en-IN', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                }),
-                courseTitle: c.Title || '',
-              })),
-          })
-        ),
-      }
+      ...pageData.LearningCourses,
+      learning_courses: (pageData.LearningCourses.learning_courses || []).map(
+        (c: any) => ({
+          ...c,
+          _descText: c.Description ? stripServerHtml(c.Description) : '',
+          _topics: (c.question_and_answers || [])
+            .filter((qa: any) => qa.Question && qa.createdAt)
+            .slice(0, 3)
+            .map((qa: any) => ({
+              question: qa.Question,
+              date: new Date(qa.createdAt).toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              }),
+              courseTitle: c.Title || '',
+            })),
+        })
+      ),
+    }
     : undefined;
   const countSection = pageData?.CountSection;
 

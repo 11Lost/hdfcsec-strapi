@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { getStrapiMediaUrl } from '@/lib/api';
 
-export default function Header() {
+export default function Header({ headerData }: { headerData?: any }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,7 +24,11 @@ export default function Header() {
     }
   }, [mobileNavOpen]);
 
-  const navItems = [
+  const navItems = headerData?.menu?.map((item: any) => ({
+    label: item.title,
+    href: item.link || '#',
+    subMenus: item.subMenus || [],
+  })) || [
     { label: 'Markets', href: '#' },
     { label: 'Products', href: '#' },
     { label: 'Research', href: '#' },
@@ -32,30 +37,65 @@ export default function Header() {
     { label: 'Support', href: '#' },
   ];
 
+  const headerTopHtml = headerData?.headerTop || '';
+  const ctaBtn1 = headerData?.ctaButtons?.[0];
+  const ctaBtn2 = headerData?.ctaButtons?.[1];
+  const logoUrl = headerData?.icon?.iconImg?.url
+    ? getStrapiMediaUrl(headerData.icon.iconImg.url)
+    : '/images/logo_main.svg';
+  const logoAlt = headerData?.icon?.iconImg?.alternativeText || 'HDFC securities';
+
   return (
     <header className={`header ${scrolled ? 'header-scrolled' : ''}`}>
-      <div className="header-promo" />
+      {headerTopHtml ? (
+        <div
+          className="header-promo"
+          dangerouslySetInnerHTML={{ __html: headerTopHtml }}
+        />
+      ) : (
+        <div className="header-promo" />
+      )}
 
       <div className="header-main">
         <div className="header-main-container">
           <Link href="/" className="header-logo header-logo-large">
-            <img src="/images/logo_main.svg" alt="HDFC securities" loading="eager" fetchPriority="high" />
+            <img src={logoUrl} alt={logoAlt} loading="eager" fetchPriority="high" />
           </Link>
 
           <nav className="header-nav" id="headerNav">
-            {navItems.map((item) => (
+            {navItems.map((item: any) => (
               <div key={item.label} className="header-nav-item">
                 <a href={item.href}>
                   {item.label}
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
+                  {item.subMenus && item.subMenus.length > 0 && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  )}
                 </a>
+                {item.subMenus && item.subMenus.length > 0 && (
+                  <div className="header-dropdown">
+                    {item.subMenus.map((subMenu: any, idx: number) => (
+                      <div key={idx} style={{ marginBottom: idx < item.subMenus.length - 1 ? '8px' : 0 }}>
+                        {subMenu.title && (
+                          <div style={{ padding: '4px 14px', fontSize: '12px', fontWeight: 'bold', color: '#9CA3AF', textTransform: 'uppercase' }}>
+                            {subMenu.title}
+                          </div>
+                        )}
+                        {subMenu.MenuLink?.map((link: any, i: number) => (
+                          <a key={i} href={link.link || '#'} className="header-dropdown-item">
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </nav>
@@ -105,18 +145,39 @@ export default function Header() {
               <span className="header-icon-badge">1</span>
             </button>
 
-            <button className="header-open-account">Open Trading A/C</button>
-            <button className="header-login">
-              Login
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
+            {ctaBtn1 ? (
+              <a href={ctaBtn1.link} className="header-open-account" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                {ctaBtn1.label}
+              </a>
+            ) : (
+              <button className="header-open-account">Open Trading A/C</button>
+            )}
+
+            {ctaBtn2 ? (
+              <a href={ctaBtn2.link} className="header-login" style={{ textDecoration: 'none' }}>
+                {ctaBtn2.label}
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </a>
+            ) : (
+              <button className="header-login">
+                Login
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+            )}
           </div>
 
           <button
@@ -187,34 +248,67 @@ export default function Header() {
             </button>
           </div>
           <div className="header-mobile-nav-links">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="header-mobile-nav-link"
-              >
-                {item.label}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
+            {navItems.map((item: any) => (
+              <div key={item.label}>
+                <a
+                  href={item.href}
+                  className="header-mobile-nav-link"
                 >
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </a>
+                  {item.label}
+                  {item.subMenus && item.subMenus.length > 0 && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  )}
+                </a>
+                {item.subMenus && item.subMenus.length > 0 && (
+                  <div style={{ paddingLeft: '16px', display: 'flex', flexDirection: 'column' }}>
+                    {item.subMenus.map((subMenu: any, idx: number) => (
+                      <div key={idx}>
+                        {subMenu.title && (
+                          <div style={{ padding: '8px 16px', fontSize: '12px', fontWeight: 'bold', color: '#9CA3AF', textTransform: 'uppercase' }}>
+                            {subMenu.title}
+                          </div>
+                        )}
+                        {subMenu.MenuLink?.map((link: any, i: number) => (
+                          <a key={i} href={link.link || '#'} className="header-mobile-nav-link" style={{ fontSize: '14px', padding: '8px 16px' }}>
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
           <div className="header-mobile-nav-actions">
-            <button className="header-open-account">
-              Open Trading A/C
-            </button>
-            <button
-              className="header-login"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              Login
-            </button>
+            {ctaBtn1 ? (
+              <a href={ctaBtn1.link} className="header-open-account" style={{ textDecoration: 'none', textAlign: 'center', display: 'block' }}>
+                {ctaBtn1.label}
+              </a>
+            ) : (
+              <button className="header-open-account">
+                Open Trading A/C
+              </button>
+            )}
+            {ctaBtn2 ? (
+              <a href={ctaBtn2.link} className="header-login" style={{ width: '100%', justifyContent: 'center', textDecoration: 'none' }}>
+                {ctaBtn2.label}
+              </a>
+            ) : (
+              <button
+                className="header-login"
+                style={{ width: '100%', justifyContent: 'center' }}
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
       </div>
