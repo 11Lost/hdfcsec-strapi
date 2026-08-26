@@ -7,6 +7,7 @@ import CalendarEvent from '@/components/landing/CalendarEvent';
 import Insights from '@/components/landing/Insights';
 import Learn from '@/components/landing/Learn';
 import Trust from '@/components/landing/Trust';
+import Image from 'next/image';
 import { fetchHomePage, getStrapiMediaUrl, fetchNSEIndices } from '@/lib/api';
 
 export default async function HomePage() {
@@ -144,10 +145,14 @@ export default async function HomePage() {
               <source src={heroMediaUrl} type={heroMediaMime} />
             </video>
           ) : heroMediaUrl ? (
-            <img
+            <Image
               className="hero-bg-image"
               src={heroMediaUrl}
               alt={heroMediaAlt}
+              fill
+              priority
+              sizes="100vw"
+              style={{ objectFit: 'cover' }}
             />
           ) : (
             <video className="hero-bg-video" autoPlay muted loop playsInline>

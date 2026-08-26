@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { getStrapiMediaUrl } from '@/lib/api';
 
 interface Stock {
@@ -73,9 +74,12 @@ export default function Insights({ data }: InsightsProps) {
                   </div>
                   {report.banner && (
                     <div className="card-expanded-image">
-                      <img
+                      <Image
                         src={getStrapiMediaUrl(report.banner.url)}
                         alt={report.banner.alternativeText || report.title || ''}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        style={{ objectFit: 'cover' }}
                         loading="lazy"
                       />
                     </div>

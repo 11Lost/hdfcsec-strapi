@@ -452,12 +452,12 @@ body {
     color: #9CA3AF;
 }
 
-.header-search-input:focus {
+/* .header-search-input:focus {
     background-color: var(--color-white);
     border-color: #1E429F;
     box-shadow: 0 0 0 3px rgba(30, 66, 159, 0.1);
     width: 280px;
-}
+} */
 
 .header-search-icon {
     position: absolute;
@@ -761,6 +761,16 @@ body {
     padding: 105px 0 0;
     position: relative;
     overflow: hidden;
+}
+
+/* Hero Media Container */
+.hero-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 /* Background Video */
@@ -2095,7 +2105,7 @@ body {
 .card-expanded {
     display: flex;
     /* background: linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 100%); */
-    background: transparent url('/images/sector_bg.png') no-repeat center center;
+    background: transparent url('/images/sector_bg.webp') no-repeat center center;
     background-size: cover;
     border: 1px solid #BFDBFE;
     border-radius: 20px;

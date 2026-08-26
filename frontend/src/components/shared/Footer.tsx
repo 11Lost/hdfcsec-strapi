@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { STRAPI_BASE, fetchFooter } from '@/lib/api';
 
 interface FooterMenuLink {
@@ -69,7 +70,7 @@ export default async function Footer() {
         <div className="footer-top">
           <div className="footer-logo">
             <div className="footer-logo-placeholder">
-              <img src={logoUrl} alt="HDFC Securities" />
+              <Image src={logoUrl} alt="HDFC Securities" width={160} height={40} style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
           <p
@@ -95,10 +96,12 @@ export default async function Footer() {
                 target={btn.target}
               >
                 {iconUrl && (
-                  <img
+                  <Image
                     src={iconUrl}
                     alt={btn.label}
                     className="footer-quick-link-icon"
+                    width={24}
+                    height={24}
                   />
                 )}
                 {btn.label}

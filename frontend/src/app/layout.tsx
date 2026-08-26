@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Script from 'next/script';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
+import VendorInit from '@/components/shared/VendorInit';
 import { fetchHeader } from '@/lib/api';
 
 export const metadata: Metadata = {
@@ -25,25 +25,12 @@ export default async function RootLayout({
   }
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-        />
-      </head>
+
       <body>
         <Header headerData={headerData} />
         <main>{children}</main>
         <Footer />
-
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"
-          strategy="beforeInteractive"
-        />
-        <Script
-          src="https://cdn.jsdelivr.net/npm/chart.js"
-          strategy="beforeInteractive"
-        />
+        <VendorInit />
       </body>
     </html>
   );

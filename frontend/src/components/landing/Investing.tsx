@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { getStrapiMediaUrl } from '@/lib/api';
 
 interface InvestingProps {
@@ -161,9 +162,12 @@ export default function Investing({ data }: InvestingProps) {
                     <div className="investing-card">
                       <div className="investing-card-image">
                         {img && (
-                          <img
+                          <Image
                             src={getStrapiMediaUrl(img.url)}
                             alt={img.alternativeText || 'Investing Slide'}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 395px"
+                            style={{ objectFit: 'cover' }}
                             loading="lazy"
                           />
                         )}
@@ -192,13 +196,16 @@ export default function Investing({ data }: InvestingProps) {
                     <p className="way-card-description">{item._parsedDescription}</p>
                   )}
                   <div className="way-card-image">
-                    {img && (
-                      <img
-                        src={getStrapiMediaUrl(img.url)}
-                        alt={img.alternativeText || 'Way card'}
-                        loading="lazy"
-                      />
-                    )}
+                  {img && (
+                    <Image
+                      src={getStrapiMediaUrl(img.url)}
+                      alt={img.alternativeText || 'Way card'}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 250px"
+                      style={{ objectFit: 'contain', objectPosition: 'bottom' }}
+                      loading="lazy"
+                    />
+                  )}
                   </div>
                 </div>
               );
@@ -219,7 +226,7 @@ export default function Investing({ data }: InvestingProps) {
           <div className="toast-content">
             <div className="toast-icon">
               {bb.BannerImg && (
-                <img src={getStrapiMediaUrl(bb.BannerImg.url)} alt="Toast Icon" style={{ width: 24, height: 24 }} />
+                <Image src={getStrapiMediaUrl(bb.BannerImg.url)} alt="Toast Icon" width={24} height={24} style={{ width: 24, height: 24, objectFit: 'contain' }} />
               )}
             </div>
             <div className="toast-text" dangerouslySetInnerHTML={{ __html: stripImgTags(bb.bannerContent || '') }} />

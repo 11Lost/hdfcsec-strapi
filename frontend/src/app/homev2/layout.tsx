@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import '../globals.css';
-import Script from 'next/script';
 import Header from '@/components/shared/Header';
 import FooterClient from '@/components/shared/FooterClient';
+import VendorInit from '@/components/shared/VendorInit';
 import { STRAPI_BASE } from '@/lib/api';
 import type { FooterData } from '@/components/shared/FooterClient';
 
@@ -35,17 +35,6 @@ export default async function HomeV2Layout({
   return (
     <>
       <head>
-        {/* Preload Swiper CSS */}
-        <link
-          rel="preload"
-          href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-          as="style"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-        />
-
         {/* Inline perf CSS */}
         <style dangerouslySetInnerHTML={{ __html: perfCss }} />
       </head>
@@ -53,16 +42,7 @@ export default async function HomeV2Layout({
         <Header />
         <main>{children}</main>
         <FooterClient data={footerData} />
-
-        {/* Defer heavy scripts */}
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="https://cdn.jsdelivr.net/npm/chart.js"
-          strategy="lazyOnload"
-        />
+        <VendorInit />
       </body>
     </>
   );

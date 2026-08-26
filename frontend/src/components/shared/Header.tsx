@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getStrapiMediaUrl } from '@/lib/api';
 
 export default function Header({ headerData }: { headerData?: any }) {
@@ -59,7 +60,7 @@ export default function Header({ headerData }: { headerData?: any }) {
       <div className="header-main">
         <div className="header-main-container">
           <Link href="/" className="header-logo header-logo-large">
-            <img src={logoUrl} alt={logoAlt} loading="eager" fetchPriority="high" />
+            <Image src={logoUrl} alt={logoAlt} width={140} height={40} priority style={{ width: 140, height: 'auto' }} />
           </Link>
 
           <nav className="header-nav" id="headerNav">
