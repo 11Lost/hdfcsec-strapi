@@ -719,7 +719,7 @@ body {
 @media (max-width: 768px) {
 
     .header{
-        padding: 0 10px;
+        padding: 16px 0 10px;
     }
     .header-logo{
         margin-right: auto;
@@ -729,9 +729,12 @@ body {
         justify-content: end;
     }
 
+    .header-promo{
+        display: none !important;
+    }
     .header-promo-text {
         font-size: 12px;
-        display: none
+        
     }
 
     .header-logo-25 {
@@ -1538,10 +1541,19 @@ body {
     .products-grid {
         grid-template-columns: 1fr;
         gap: 16px;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .product-card {
-        padding: 20px;
+        padding: 15px 20px;
+        width: 46%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .product-name{
+        font-size: 14px;
+        font-weight: normal;
     }
 }
 
@@ -2382,6 +2394,32 @@ body {
 
     .insights-header {
         margin-bottom: 20px;
+    }
+    .insights-stocks{
+        margin-bottom: 10px;
+    }
+    .insights-stocks-label{
+        font-size: 12px;
+    }
+    .insights-stocks{
+        gap: 4px;
+    }
+    .card-expanded-desc{
+        font-size: 12px;
+        line-height: 14px;
+        margin-bottom: 10px;
+    }
+    .insights-link{
+        font-size: 12px;
+    }
+    .card-expanded-image{
+        right: 0;
+        bottom: 0;
+        justify-content: end;
+    }
+    .card-expanded-image img{
+        max-height: none;
+        max-width: 150px;
     }
 }
 
