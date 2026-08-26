@@ -28,8 +28,8 @@ export default function SipCalculator() {
   const [mode, setMode] = useState<'SIP' | 'LUMPSUM'>('SIP');
   const [amount, setAmount] = useState<number>(1650);
   const [period, setPeriod] = useState<number>(5); // years
-  
-  const [searchQuery, setSearchQuery] = useState<string>('Reliance');
+
+  const [searchQuery, setSearchQuery] = useState<string>('RELIANCE INDUSTRIES LTD');
   const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
   const [selectedSymbol, setSelectedSymbol] = useState<string>('RELIANCE.NS');
 
@@ -47,7 +47,7 @@ export default function SipCalculator() {
     yearlyData?: { label: string; invested: number; value: number }[];
   } | null>(null);
 
-  const [searchResults, setSearchResults] = useState<{symbol: string, name: string, exchange: string}[]>([]);
+  const [searchResults, setSearchResults] = useState<{ symbol: string, name: string, exchange: string }[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Debounce inputs to prevent API spam
@@ -63,7 +63,7 @@ export default function SipCalculator() {
   useEffect(() => {
     let active = true;
     const fetchSearch = async () => {
-      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance') {
+      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'RELIANCE INDUSTRIES LTD') {
         if (active) setSearchResults([]);
         return;
       }
@@ -242,7 +242,7 @@ export default function SipCalculator() {
                 onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              
+
               {isDropdownOpen && searchResults.length > 0 && (
                 <div style={{
                   position: 'absolute',
