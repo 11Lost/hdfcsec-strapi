@@ -53,14 +53,33 @@ export default function Learn({ data }: LearnProps) {
       if (!container) return;
 
       swiperInstance.current = new w.Swiper(container, {
-        slidesPerView: 1,
+        slidesPerView: 'auto',
         spaceBetween: 20,
+        centeredSlides: true,
         loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false },
+        navigation: false,
+        effect: 'coverflow',
+        grabCursor: true,
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+          slideShadows: true
+        },
+        // autoplay: { delay: 4000, disableOnInteraction: false },
         pagination: {
           el: container.querySelector('.swiper-pagination') as HTMLElement,
           clickable: true,
         },
+        breakpoints: {
+          560: {
+            slidesPerView: 1
+          },
+          1024: {
+            slidesPerView: 1.5
+          }
+        }
       });
     };
 
