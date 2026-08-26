@@ -61,11 +61,11 @@ export default function Learn({ data }: LearnProps) {
         effect: 'coverflow',
         grabCursor: true,
         coverflowEffect: {
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2,
-            slideShadows: true
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+          slideShadows: true
         },
         // autoplay: { delay: 4000, disableOnInteraction: false },
         pagination: {
