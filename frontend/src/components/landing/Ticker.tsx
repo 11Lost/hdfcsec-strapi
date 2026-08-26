@@ -9,56 +9,7 @@ interface Stock {
   PER_CHANGE?: string;
 }
 
-const API_BASE = 'https://www.hdfcsec.com/api/EquityAPI';
 
-const LOSERS_BODY = new URLSearchParams({
-  Method: 'BI_GAINLOSER',
-  'param[0][Key]': 'p_rcdcnt',
-  'param[0][Value]': '10',
-  'param[1][Key]': 'p_exchange',
-  'param[1][Value]': 'NSE',
-  'param[2][Key]': 'p_fname',
-  'param[2][Value]': 'L',
-  'param[3][Key]': 'p_index',
-  'param[3][Value]': '20559',
-  'param[4][Key]': 'p_pagesize',
-  'param[4][Value]': '10',
-  'param[5][Key]': 'p_pagenumber',
-  'param[5][Value]': '1',
-}).toString();
-
-const GAINERS_BODY = new URLSearchParams({
-  Method: 'BI_GAINLOSER',
-  'param[0][Key]': 'p_rcdcnt',
-  'param[0][Value]': '5',
-  'param[1][Key]': 'p_exchange',
-  'param[1][Value]': 'NSE',
-  'param[2][Key]': 'p_fname',
-  'param[2][Value]': 'G',
-  'param[3][Key]': 'p_index',
-  'param[3][Value]': '20559',
-  'param[4][Key]': 'p_pagesize',
-  'param[4][Value]': '20',
-  'param[5][Key]': 'p_pagenumber',
-  'param[5][Value]': '1',
-}).toString();
-
-async function postJson(apiUrl: string, body: string): Promise<{ data: Stock[] }[]> {
-  const response = await fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      'X-Requested-With': 'XMLHttpRequest',
-      Accept: '*/*',
-    },
-    body,
-  });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const json = await response.json();
-  const raw = json?.data ?? json?.Data ?? json;
-  const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
-  return Array.isArray(parsed) ? parsed : [];
-}
 
 function formatPrice(val: string | undefined): string {
   const n = parseFloat(String(val || '0').replace(/,/g, ''));
@@ -79,23 +30,66 @@ function escapeHtml(str: string): string {
 }
 
 export default function Ticker() {
-  const [currentFilter, setCurrentFilter] = useState<string>('all');
+  const [currentFilter, setCurrentFilter] = useState<string>('positive');
   const [gainers, setGainers] = useState<Stock[]>([]);
   const [losers, setLosers] = useState<Stock[]>([]);
+  const [sectors, setSectors] = useState<Stock[]>([]);
   const tickerRef = useRef<HTMLDivElement>(null);
+
+  const SECTORS_LIST = [
+    'NIFTY BANK',
+    'NIFTY AUTO',
+    'NIFTY IT',
+    'NIFTY FMCG',
+    'NIFTY METAL',
+    'NIFTY PHARMA',
+    'NIFTY REALTY',
+    'NIFTY MEDIA',
+    'NIFTY ENERGY',
+    'NIFTY INFRA',
+  ];
 
   const fetchData = useCallback(async () => {
     try {
-      const [gainersRes, losersRes] = await Promise.allSettled([
-        postJson(`${API_BASE}/GetMarketTypeGainerData`, GAINERS_BODY),
-        postJson(`${API_BASE}/GetlooserData`, LOSERS_BODY),
-      ]);
-      if (gainersRes.status === 'fulfilled' && gainersRes.value.length > 0) {
-        setGainers(gainersRes.value[0]?.data || []);
-      }
-      if (losersRes.status === 'fulfilled' && losersRes.value.length > 0) {
-        setLosers(losersRes.value[0]?.data || []);
-      }
+      const res = await fetch('/api/nse-indices');
+      const json = await res.json();
+      const data = json.data || [];
+
+      // Top Gainers: Sort descending by percentChange
+      const topGainers = [...data]
+        .filter((idx: any) => idx.percentChange > 0)
+        .sort((a: any, b: any) => b.percentChange - a.percentChange)
+        .slice(0, 10)
+        .map((idx: any) => ({
+          F_NAME: idx.indexSymbol || idx.index,
+          LTP: String(idx.last),
+          PER_CHANGE: String(idx.percentChange),
+        }));
+
+      // Top Losers: Sort ascending by percentChange
+      const topLosers = [...data]
+        .filter((idx: any) => idx.percentChange < 0)
+        .sort((a: any, b: any) => a.percentChange - b.percentChange)
+        .slice(0, 10)
+        .map((idx: any) => ({
+          F_NAME: idx.indexSymbol || idx.index,
+          LTP: String(idx.last),
+          PER_CHANGE: String(idx.percentChange),
+        }));
+
+      // Sectors: match SECTORS_LIST
+      const mappedSectors = data
+        .filter((idx: any) => SECTORS_LIST.includes(idx.indexSymbol || idx.index))
+        .slice(0, 10)
+        .map((idx: any) => ({
+          F_NAME: idx.indexSymbol || idx.index,
+          LTP: String(idx.last),
+          PER_CHANGE: String(idx.percentChange),
+        }));
+
+      setGainers(topGainers);
+      setLosers(topLosers);
+      setSectors(mappedSectors);
     } catch (err) {
       console.warn('[Ticker] Fetch failed:', err);
     }
@@ -110,7 +104,8 @@ export default function Ticker() {
   const getStocks = (): Stock[] => {
     if (currentFilter === 'positive') return gainers;
     if (currentFilter === 'negative') return losers;
-    return [...gainers, ...losers];
+    if (currentFilter === 'sectors') return sectors;
+    return gainers;
   };
 
   const stocks = getStocks();
@@ -163,8 +158,8 @@ export default function Ticker() {
             Top Losers
           </button>
           <button
-            className={`ticker-tab ${currentFilter === 'all' ? 'active' : ''}`}
-            onClick={() => setCurrentFilter('all')}
+            className={`ticker-tab ${currentFilter === 'sectors' ? 'active' : ''}`}
+            onClick={() => setCurrentFilter('sectors')}
           >
             Sectors
           </button>
