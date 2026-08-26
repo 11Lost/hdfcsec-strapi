@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cms.hdfcsec.com',
+        hostname: 'hdfc-securities-api.idealake.com',
       },
       {
         protocol: 'http',
