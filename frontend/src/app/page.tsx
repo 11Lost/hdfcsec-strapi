@@ -7,13 +7,18 @@ import CalendarEvent from '@/components/landing/CalendarEvent';
 import Insights from '@/components/landing/Insights';
 import Learn from '@/components/landing/Learn';
 import Trust from '@/components/landing/Trust';
-import { fetchHomePage, getStrapiMediaUrl } from '@/lib/api';
+import { fetchHomePage, getStrapiMediaUrl, fetchNSEIndices } from '@/lib/api';
 
 export default async function HomePage() {
   let pageData: Record<string, any> | null = null;
+  let nseData: any[] = [];
   try {
-    const res = await fetchHomePage();
+    const [res, nseRes] = await Promise.all([
+      fetchHomePage(),
+      fetchNSEIndices(),
+    ]);
     pageData = res.data;
+    nseData = nseRes.data || [];
   } catch (error) {
     console.warn('[HomePage] Failed to fetch Strapi data', error);
   }
@@ -166,11 +171,11 @@ export default async function HomePage() {
           </div>
           <div className="hero-image">
             <div className="market-panel glass-card">
-              <MarketIndices />
+              <MarketIndices initialData={nseData} />
             </div>
           </div>
         </div>
-        <Ticker />
+        <Ticker initialData={nseData} />
       </section>
 
       <Investing data={waysToInvest} />

@@ -42,8 +42,16 @@ function formatNum(val: string | number): string {
   });
 }
 
-export default function MarketIndices() {
-  const [indices, setIndices] = useState<IndexData[]>([]);
+export default function MarketIndices({ initialData = [] }: { initialData?: any[] }) {
+  const [indices, setIndices] = useState<IndexData[]>(() => {
+    if (!initialData || initialData.length === 0) return [];
+    return ALLOWED_INDICES.map((name) =>
+      initialData.find(
+        (idx: IndexData) =>
+          idx.indexSymbol === name || idx.index === name
+      )
+    ).filter(Boolean);
+  });
 
   const fetchIndices = useCallback(async () => {
     try {

@@ -29,13 +29,33 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#039;');
 }
 
-export default function Ticker() {
+export default function Ticker({ initialData = [] }: { initialData?: any[] }) {
   const [currentFilter, setCurrentFilter] = useState<string>('positive');
-  const [gainers, setGainers] = useState<Stock[]>([]);
-  const [losers, setLosers] = useState<Stock[]>([]);
-  const [sectors, setSectors] = useState<Stock[]>([]);
-  const tickerRef = useRef<HTMLDivElement>(null);
-
+  const [gainers, setGainers] = useState<Stock[]>(() => {
+    if (!initialData || initialData.length === 0) return [];
+    return [...initialData]
+      .filter((idx: any) => idx.percentChange > 0)
+      .sort((a: any, b: any) => b.percentChange - a.percentChange)
+      .slice(0, 10)
+      .map((idx: any) => ({
+        F_NAME: idx.indexSymbol || idx.index,
+        LTP: String(idx.last),
+        PER_CHANGE: String(idx.percentChange),
+      }));
+  });
+  const [losers, setLosers] = useState<Stock[]>(() => {
+    if (!initialData || initialData.length === 0) return [];
+    return [...initialData]
+      .filter((idx: any) => idx.percentChange < 0)
+      .sort((a: any, b: any) => a.percentChange - b.percentChange)
+      .slice(0, 10)
+      .map((idx: any) => ({
+        F_NAME: idx.indexSymbol || idx.index,
+        LTP: String(idx.last),
+        PER_CHANGE: String(idx.percentChange),
+      }));
+  });
+  
   const SECTORS_LIST = [
     'NIFTY BANK',
     'NIFTY AUTO',
@@ -48,6 +68,22 @@ export default function Ticker() {
     'NIFTY ENERGY',
     'NIFTY INFRA',
   ];
+
+  const [sectors, setSectors] = useState<Stock[]>(() => {
+    if (!initialData || initialData.length === 0) return [];
+    return initialData
+      .filter((idx: any) => SECTORS_LIST.includes(idx.indexSymbol || idx.index))
+      .slice(0, 10)
+      .map((idx: any) => ({
+        F_NAME: idx.indexSymbol || idx.index,
+        LTP: String(idx.last),
+        PER_CHANGE: String(idx.percentChange),
+      }));
+  });
+  
+  const tickerRef = useRef<HTMLDivElement>(null);
+
+
 
   const fetchData = useCallback(async () => {
     try {
