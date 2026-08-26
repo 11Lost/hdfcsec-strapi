@@ -17,7 +17,7 @@ export default function Hero() {
           <a href="#" id="heroCta" className="btn btn-primary" style={{ display: 'none' }} />
         </div>
         <div className="hero-image">
-          <div className="market-panel">
+          <div className="market-panel glass-card">
             <div id="marketGrid" className="market-grid" />
           </div>
         </div>

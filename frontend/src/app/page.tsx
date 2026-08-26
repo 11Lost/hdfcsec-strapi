@@ -165,7 +165,7 @@ export default async function HomePage() {
             )}
           </div>
           <div className="hero-image">
-            <div className="market-panel">
+            <div className="market-panel glass-card">
               <MarketIndices />
             </div>
           </div>

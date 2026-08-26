@@ -170,7 +170,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1370px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 20px;
     box-sizing: border-box;
@@ -813,13 +813,54 @@ body {
     padding: 24px;
     width: 380px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+.glass-card {
+    background: #f1f5fcbd;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid #aebbd1;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px #0000001a, inset 0 1px #ffffff80, inset 0 -1px #ffffff1a, inset 0 0 44px 22px #dbe5fc;
+  position: relative;
+  overflow: hidden;
+}
 
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
 }
 
 .market-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 30px 20px;
 }
 
 .market-item {
@@ -828,25 +869,27 @@ body {
 }
 
 .market-name {
-    font-size: 11px;
-    font-family: 'Inter-Medium';
-    color: #6B7280;
+    font-size: 12px;
+    line-height: 12px;
+    font-family: 'Inter-Regular';
+    color: #111928;
     text-transform: uppercase;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
+    margin-bottom: 10px;
 }
 
 .market-value {
-    font-size: 22px;
-    font-family: 'Inter-Bold';
+    font-size: 14px;
+    line-height: 14px;
+    font-family: 'Inter-SemiBold';
     font-weight: 700;
-    color: #111827;
-    margin-bottom: 8px;
+    color: #111928;
+    margin-bottom: 10px;
 }
 
 .market-change {
-    font-size: 13px;
-    font-family: 'Inter-Medium';
+    font-size: 12px;
+    line-height: 12px;
+    font-family: 'Inter-Regular';
     display: flex;
     align-items: center;
     gap: 6px;
@@ -873,7 +916,7 @@ body {
     background: linear-gradient(0deg, rgba(10, 105, 211, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0A69D3", endColorstr="#FFFFFF", GradientType=0);
     padding: 0;
-    margin-top: 160px;
+    margin-top: 120px;
     padding-top: 33px;
     position: relative;
     z-index: 1;
@@ -1208,7 +1251,11 @@ body {
 }
 
 .way-card {
-    background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+    background: #EBF7FF;
+background: -webkit-linear-gradient(174deg, rgba(235, 247, 255, 1) 0%, rgba(235, 247, 255, 0.72) 49%, rgba(235, 247, 255, 0.77) 63%, rgba(255, 255, 255, 0.93) 79%, rgba(235, 247, 255, 1) 100%);
+background: -moz-linear-gradient(174deg, rgba(235, 247, 255, 1) 0%, rgba(235, 247, 255, 0.72) 49%, rgba(235, 247, 255, 0.77) 63%, rgba(255, 255, 255, 0.93) 79%, rgba(235, 247, 255, 1) 100%);
+background: linear-gradient(174deg, rgba(235, 247, 255, 1) 0%, rgba(235, 247, 255, 0.72) 49%, rgba(235, 247, 255, 0.77) 63%, rgba(255, 255, 255, 0.93) 79%, rgba(235, 247, 255, 1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#EBF7FF", endColorstr="#EBF7FF", GradientType=0);
     border-radius: 20px;
     padding: 32px 24px;
     position: relative;
@@ -1217,6 +1264,7 @@ body {
     transition: all 0.3s ease;
     border: 1px solid #E2E8F0;
     max-width: 250px;
+
 }
 
 .way-card:hover {
@@ -1318,7 +1366,8 @@ body {
 }/* Products Section Styles */
 .products-section {
     padding: 30px 0 50px;
-    background-color: var(--color-white);
+    background: var(--color-white) url(../../public/images/our_products_bg.png) no-repeat center center fixed;
+
 }
 
 .products-header {
@@ -2153,10 +2202,10 @@ body {
 /* ===========================
    Hover Effects
    =========================== */
-.insights-card:not(.active):hover,
+/* .insights-card:not(.active):hover,
 .insights-card.active:hover {
     flex: inherit;
-}
+} */
 
 /* ===========================
    Mobile: Vertical Stack + Click
