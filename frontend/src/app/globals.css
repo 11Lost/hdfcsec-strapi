@@ -250,6 +250,10 @@ body {
     /* background: linear-gradient(135deg, #1E429F 0%, #2563EB 100%); */
     padding: 10px 20px;
     text-align: center;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-promo-text {
@@ -273,6 +277,7 @@ body {
     max-width: 1300px;
     margin: 0 auto;
     border-radius: 30px;
+    min-height: 70px;
 }
 
 .header-main-container {
@@ -2430,6 +2435,7 @@ body {
     flex: 1;
     max-width: 680px;
     position: relative;
+    overflow: visible;
 }
 
 .learn-swiper {
@@ -2768,35 +2774,19 @@ body {
     opacity: 0;
 }
 
-.course-swiper .swiper-slide.swiper-slide-active {
-    /* transition: 0.3s all;
-	opacity: 1;
-    scale: 0.9; */
-    left: -10%;
-    scale: 1;
-}
-
 .course-swiper .swiper-slide.swiper-slide-active .card {
-    scale: 1;
+    transform: scale(1);
 }
 
+.course-swiper .swiper-slide.swiper-slide-prev .card,
+.course-swiper .swiper-slide.swiper-slide-next .card {
+    transform: scale(0.85);
+    opacity: 0.6;
+}
 
 .course-swiper.swiper-3d .swiper-slide-shadow-left,
 .course-swiper.swiper-3d .swiper-slide-shadow-right {
     background: transparent;
-}
-
-.course-swiper .swiper-slide.swiper-slide-next {
-    right: 55%;
-}
-
-.course-swiper .swiper-slide.swiper-slide-prev {
-    left: 35%;
-}
-
-.course-swiper .swiper-slide {
-    /* scale: 0.8; */
-    /* transform: none !important; */
 }
 
 .course-swiper .card {
@@ -2811,7 +2801,7 @@ body {
     overflow: hidden;
     min-width: 570px;
     min-height: 350px;
-    scale: 0.8;
+    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .course-swiper .card::after {
@@ -2958,30 +2948,18 @@ body {
 
 
 @media screen and (max-width: 767px) {
-    .course-swiper .swiper-slide.swiper-slide-next {
-        right: 0
-    }
-
-    .course-swiper .swiper-slide.swiper-slide-prev {
-        left: 0
-    }
-
     .course-swiper .swiper-slide:not(.swiper-slide-prev):not(.swiper-slide-active):not(.swiper-slide-next) {
         opacity: 1;
-    }
-
-    .course-swiper .swiper-slide.swiper-slide-active {
-        left: 0;
     }
 
     .course-swiper .card {
         width: 100%;
         max-width: inherit;
         min-height: 350px;
-        scale: 1;
         min-width: 100%;
+        transform: scale(1) !important;
+        opacity: 1 !important;
     }
-
 }
 
 /* Trust Section Styles */
@@ -3858,6 +3836,7 @@ body {
     background: linear-gradient(180deg, #0A1628 0%, #0F2744 100%);
     color: var(--color-white);
     padding-top: 60px;
+    min-height: 500px;
     background: #003A73;
     background: -webkit-linear-gradient(180deg, rgba(0, 58, 115, 1) 0%, rgba(1, 39, 76, 1) 100%);
     background: -moz-linear-gradient(180deg, rgba(0, 58, 115, 1) 0%, rgba(1, 39, 76, 1) 100%);
@@ -3899,6 +3878,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 160px;
+    min-height: 40px;
 }
 
 .footer-logo-text {

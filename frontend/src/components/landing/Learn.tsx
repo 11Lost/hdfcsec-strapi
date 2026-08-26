@@ -53,14 +53,16 @@ export default function Learn({ data }: LearnProps) {
       if (!container) return;
 
       swiperInstance.current = new w.Swiper(container, {
-        slidesPerView: 1,
+        slidesPerView: 'auto',
         spaceBetween: 20,
+        centeredSlides: true,
         loop: true,
         autoplay: { delay: 4000, disableOnInteraction: false },
         pagination: {
           el: container.querySelector('.swiper-pagination') as HTMLElement,
           clickable: true,
         },
+        grabCursor: true,
       });
     };
 
