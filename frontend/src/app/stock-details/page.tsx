@@ -6,6 +6,8 @@ import PeerComparison from '@/components/stock-details-page/PeerComparison';
 import ReturnCalculator from '@/components/stock-details-page/ReturnCalculator';
 import ResearchAnalysis from '@/components/stock-details-page/ResearchAnalysis';
 import FAQ from '@/components/stock-details-page/FAQ';
+import News from '@/components/stock-details-page/News';
+import Reports from '@/components/stock-details-page/Reports';
 import { fetchStockDetails } from '@/lib/api';
 
 export default async function StockDetailsPage() {
@@ -17,11 +19,20 @@ export default async function StockDetailsPage() {
       <StockHero data={data} />
       <StockOverview />
       <Overview data={data} />
-      <CompanyOverview data={data} />
-      <ReturnCalculator />
-      <PeerComparison />
-      <ResearchAnalysis />
-      <FAQ data={data} />
+      
+      <div className="container" style={{ display: 'grid', gridTemplateColumns: '75% calc(25% - 24px)', gap: '24px', paddingBottom: '40px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <CompanyOverview data={data} />
+          <ReturnCalculator data={data} />
+          <PeerComparison />
+          <ResearchAnalysis />
+          <FAQ data={data} />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <News data={data} />
+          <Reports data={data} />
+        </div>
+      </div>
     </>
   );
 }

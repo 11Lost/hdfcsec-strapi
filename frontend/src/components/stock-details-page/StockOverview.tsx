@@ -68,7 +68,7 @@ const options = {
       padding: 12,
       displayColors: false,
       callbacks: {
-        label: function(context: any) {
+        label: function (context: any) {
           return '₹' + context.parsed.y.toFixed(2);
         }
       }
@@ -105,9 +105,9 @@ export default function StockOverview() {
                 id="tvChartContainer"
                 style={{ height: 350, minHeight: 320, width: '100%', position: 'relative' }}
               >
-                <Line data={data} options={options} />
+                <Line data={data} />
               </div>
-              
+
               <div className="stock-time-controls" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', borderTop: '1px dashed #E5E7EB', paddingTop: '16px' }}>
                 <div className="stock-exchange-toggle" style={{ display: 'flex', gap: '8px' }}>
                   <button className="stock-exchange-btn" style={{ background: '#E0E7FF', padding: '6px 20px', borderRadius: '20px', fontWeight: 'bold', color: '#1E3A8A', border: 'none', cursor: 'pointer' }}>NSE</button>
@@ -150,23 +150,23 @@ export default function StockOverview() {
                   <path d="M12 8h.01" />
                 </svg>
               </h3>
-              
+
               <div className="stock-range-row" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#64748B', marginBottom: '8px' }}>
-                <span>Today's Low<br/><strong style={{ color: '#DC2626', fontSize: '14px' }}>1,531.00</strong></span>
-                <span style={{ textAlign: 'right' }}>Today's High<br/><strong style={{ color: '#16A34A', fontSize: '14px' }}>1,541.00</strong></span>
+                <span>Today's Low<br /><strong style={{ color: '#DC2626', fontSize: '14px' }}>1,531.00</strong></span>
+                <span style={{ textAlign: 'right' }}>Today's High<br /><strong style={{ color: '#16A34A', fontSize: '14px' }}>1,541.00</strong></span>
               </div>
               <div className="stock-range-bar" style={{ height: '6px', background: 'linear-gradient(to right, #EF4444, #F59E0B, #22C55E)', borderRadius: '3px', position: 'relative', marginBottom: '24px' }}>
                 <div className="stock-range-indicator" style={{ position: 'absolute', left: '70%', top: '50%', transform: 'translate(-50%, -50%)', width: '0', height: '0', borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderBottom: '6px solid black' }} />
               </div>
-              
+
               <div className="stock-range-row" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#64748B', marginBottom: '8px' }}>
-                <span>52W Low<br/><strong style={{ color: '#DC2626', fontSize: '14px' }}>1,141.00</strong></span>
-                <span style={{ textAlign: 'right' }}>52W High<br/><strong style={{ color: '#16A34A', fontSize: '14px' }}>1,581.00</strong></span>
+                <span>52W Low<br /><strong style={{ color: '#DC2626', fontSize: '14px' }}>1,141.00</strong></span>
+                <span style={{ textAlign: 'right' }}>52W High<br /><strong style={{ color: '#16A34A', fontSize: '14px' }}>1,581.00</strong></span>
               </div>
               <div className="stock-range-bar" style={{ height: '6px', background: 'linear-gradient(to right, #EF4444, #F59E0B, #22C55E)', borderRadius: '3px', position: 'relative', marginBottom: '24px' }}>
                 <div className="stock-range-indicator" style={{ position: 'absolute', left: '82%', top: '50%', transform: 'translate(-50%, -50%)', width: '0', height: '0', borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderBottom: '6px solid black' }} />
               </div>
-              
+
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginTop: '24px', borderTop: '1px solid #F1F5F9', paddingTop: '16px' }}>
                 <div><div style={{ fontSize: '12px', color: '#64748B' }}>Open</div><div style={{ fontWeight: 'bold' }}>1,141.00</div></div>
                 <div><div style={{ fontSize: '12px', color: '#64748B' }}>Prev. Close</div><div style={{ fontWeight: 'bold' }}>1,141.00</div></div>
