@@ -123,14 +123,6 @@ export default function Overview({ data }: { data?: any }) {
     askTotal: 590,
     buyPercent: 55,
   });
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     // setMarketData(generateRandomMarketData());
-  //   }, 5000);
-  //   return () => clearInterval(interval);
-  // }, []);
-
   return (
     <section id="overview" className="overview-section">
       <div className="container">
