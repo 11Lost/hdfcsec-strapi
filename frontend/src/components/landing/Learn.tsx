@@ -83,8 +83,8 @@ export default function Learn({ data }: LearnProps) {
       });
     };
 
-    initSwiper();
-    timer = setTimeout(initSwiper, 600);
+    // Initialize slider after 3 seconds of page load
+    timer = setTimeout(initSwiper, 3000);
 
     return () => {
       cancelled = true;

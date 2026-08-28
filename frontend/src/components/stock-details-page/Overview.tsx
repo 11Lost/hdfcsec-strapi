@@ -16,30 +16,6 @@ ChartJS.register(
   Tooltip
 );
 
-// const generateRandomMarketData = () => {
-//   const basePrice = 1450 + Math.random() * 10;
-
-//   const generateRows = (isAsk: boolean) => {
-//     const rows = [];
-//     for (let i = 0; i < 5; i++) {
-//       const priceOffset = isAsk ? i * 0.5 : -i * 0.5;
-//       const price = basePrice + priceOffset;
-//       const quantity = Math.floor(Math.random() * 20) + 1;
-//       const width = Math.floor(Math.random() * 50) + 20;
-//       rows.push({ price, quantity, width });
-//     }
-//     return rows;
-//   };
-
-//   const bids = generateRows(false);
-//   const asks = generateRows(true);
-//   const bidTotal = bids.reduce((sum, r) => sum + r.quantity, 0);
-//   const askTotal = asks.reduce((sum, r) => sum + r.quantity, 0);
-//   const buyPercent = Math.floor(Math.random() * 40) + 30;
-
-//   return { bids, asks, bidTotal, askTotal, buyPercent };
-// };
-
 const financeData = {
   labels: ['2021', '2022', '2023', '2024', '2025'],
   datasets: [
@@ -105,7 +81,7 @@ const valuePlugin = {
 
 export default function Overview({ data }: { data?: any }) {
   const [marketData, setMarketData] = useState({
-    bids: [
+      bids: [
       { price: 1449.15, quantity: 250, width: 80 },
       { price: 1449.10, quantity: 150, width: 50 },
       { price: 1449.05, quantity: 80, width: 30 },
@@ -142,7 +118,7 @@ export default function Overview({ data }: { data?: any }) {
                 <div className="market-depth-table">
                   <div className="market-depth-header">
                     <span>Bid Price</span>
-                    <span>Quanity</span>
+                    <span>Quantity</span>
                   </div>
                   {marketData.bids.map((row, i) => (
                     <div key={i} className="market-depth-row">
@@ -164,7 +140,7 @@ export default function Overview({ data }: { data?: any }) {
                 <div className="market-depth-table">
                   <div className="market-depth-header">
                     <span>Ask Price</span>
-                    <span>Quanity</span>
+                    <span>Quantity</span>
                   </div>
                   {marketData.asks.map((row, i) => (
                     <div key={i} className="market-depth-row">
@@ -199,7 +175,7 @@ export default function Overview({ data }: { data?: any }) {
               </div>
             </div>
 
-            <div className="overview-card" style={{ padding: '24px', border: '1px solid #E5E7EB', borderRadius: '12px', background: 'white', marginTop: '24px' }}>
+            <div className="overview-card" style={{ padding: '24px', border: '1px solid #E5E7EB', borderRadius: '12px', background: 'white'}}>
               <h3 className="overview-card-title" style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: '#0f172a' }}>
                 Finance
                 <svg className="info-icon" viewBox="0 0 24 24" fill="#1E3A8A" style={{ width: '16px', height: '16px' }}>
@@ -208,7 +184,7 @@ export default function Overview({ data }: { data?: any }) {
                   <path d="M12 8h.01" stroke="white" strokeWidth="2" />
                 </svg>
               </h3>
-              <div className="finance-tabs" style={{ display: 'flex', gap: '24px', borderBottom: '1px solid #E5E7EB', marginBottom: '24px' }}>
+              <div className="finance-tabs" style={{ display: 'flex', gap: '24px', borderBottom: '1px solid #E5E7EB', marginBottom: '0' }}>
                 <button className="finance-tab active" style={{ color: '#1E3A8A', fontWeight: 'bold', borderBottom: '2px solid #1E3A8A', paddingBottom: '12px', background: 'transparent', borderTop: 'none', borderLeft: 'none', borderRight: 'none', cursor: 'pointer', fontSize: '14px' }}>
                   Turnover
                 </button>
@@ -222,7 +198,7 @@ export default function Overview({ data }: { data?: any }) {
               <div className="finance-chart-container" style={{ height: '240px', width: '100%', position: 'relative' }}>
                 <Bar data={financeData} options={financeOptions} plugins={[valuePlugin]} />
               </div>
-              <div className="finance-controls" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px' }}>
+              <div className="finance-controls" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0' }}>
                 <div className="finance-toggle" style={{ display: 'flex', gap: '8px' }}>
                   <button className="finance-toggle-btn" style={{ padding: '6px 16px', borderRadius: '20px', background: '#F1F5F9', color: '#94A3B8', border: 'none', fontSize: '13px', cursor: 'pointer' }}>
                     Quarterly

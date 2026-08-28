@@ -52,6 +52,16 @@ export default function Insights({ data }: InsightsProps) {
                 <div className="card-compact">
                   <h3 className="card-compact-title">{report.title}</h3>
                   <p className="card-compact-desc">{descText}</p>
+                  {report.banner && (
+                    <div className="card-compact-image">
+                      <img
+                        src={getStrapiMediaUrl(report.banner.url)}
+                        alt={report.banner.alternativeText || report.title || ''}
+                        style={{ objectFit: 'cover' }}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="card-expanded">
                   <div className="card-expanded-content">

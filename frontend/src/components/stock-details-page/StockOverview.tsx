@@ -97,7 +97,7 @@ export default function StockOverview() {
       <div className="container">
         <div className="stock-overview-content">
           {/* Left Column */}
-          <div className="stock-overview-left" style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '24px', minWidth: 0 }}>
+          <div className="stock-overview-left" style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '10px', minWidth: 0 }}>
             <div className="stock-chart-panel" style={{ backgroundColor: 'white' }}>
               <div className="stock-chart-label">Price (₹)</div>
               <div
@@ -153,18 +153,18 @@ export default function StockOverview() {
 
               <div className="stock-range-row" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#64748B', marginBottom: '8px' }}>
                 <span>Today's Low<br /><strong style={{ color: '#DC2626', fontSize: '14px' }}>1,531.00</strong></span>
+                <div className="stock-range-bar" style={{ height: '6px', background: 'linear-gradient(to right, #EF4444, #F59E0B, #22C55E)', borderRadius: '3px', position: 'relative', marginBottom: '24px' }}>
+                  <div className="stock-range-indicator" style={{ position: 'absolute', left: '70%', top: '50%', transform: 'translate(-50%, -50%)', width: '0', height: '0', borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderBottom: '6px solid black' }} />
+                </div>
                 <span style={{ textAlign: 'right' }}>Today's High<br /><strong style={{ color: '#16A34A', fontSize: '14px' }}>1,541.00</strong></span>
-              </div>
-              <div className="stock-range-bar" style={{ height: '6px', background: 'linear-gradient(to right, #EF4444, #F59E0B, #22C55E)', borderRadius: '3px', position: 'relative', marginBottom: '24px' }}>
-                <div className="stock-range-indicator" style={{ position: 'absolute', left: '70%', top: '50%', transform: 'translate(-50%, -50%)', width: '0', height: '0', borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderBottom: '6px solid black' }} />
               </div>
 
               <div className="stock-range-row" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#64748B', marginBottom: '8px' }}>
                 <span>52W Low<br /><strong style={{ color: '#DC2626', fontSize: '14px' }}>1,141.00</strong></span>
+                <div className="stock-range-bar" style={{ height: '6px', background: 'linear-gradient(to right, #EF4444, #F59E0B, #22C55E)', borderRadius: '3px', position: 'relative', marginBottom: '24px' }}>
+                  <div className="stock-range-indicator" style={{ position: 'absolute', left: '82%', top: '50%', transform: 'translate(-50%, -50%)', width: '0', height: '0', borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderBottom: '6px solid black' }} />
+                </div>
                 <span style={{ textAlign: 'right' }}>52W High<br /><strong style={{ color: '#16A34A', fontSize: '14px' }}>1,581.00</strong></span>
-              </div>
-              <div className="stock-range-bar" style={{ height: '6px', background: 'linear-gradient(to right, #EF4444, #F59E0B, #22C55E)', borderRadius: '3px', position: 'relative', marginBottom: '24px' }}>
-                <div className="stock-range-indicator" style={{ position: 'absolute', left: '82%', top: '50%', transform: 'translate(-50%, -50%)', width: '0', height: '0', borderLeft: '4px solid transparent', borderRight: '4px solid transparent', borderBottom: '6px solid black' }} />
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginTop: '24px', borderTop: '1px solid #F1F5F9', paddingTop: '16px' }}>
@@ -186,7 +186,7 @@ export default function StockOverview() {
                   <path d="M12 8h.01" />
                 </svg>
               </h3>
-              <div className="stock-fund-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
+              <div className="stock-fund-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }}>
                 {[
                   ['Market Cap', '11,25,123 Cr'],
                   ['P/E Ratio', '21.00'],

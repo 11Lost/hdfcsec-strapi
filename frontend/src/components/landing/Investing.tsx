@@ -98,9 +98,8 @@ export default function Investing({ data }: InvestingProps) {
       }, 100);
     };
 
-    // Try to init; retry if Swiper script hasn't loaded yet
-    initSwiper();
-    timer = setTimeout(initSwiper, 600);
+    // Initialize slider after 3 seconds of page load
+    timer = setTimeout(initSwiper, 3000);
 
     return () => {
       cancelled = true;
@@ -110,6 +109,7 @@ export default function Investing({ data }: InvestingProps) {
         swiperInstance.current = null;
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [domReady, slides.length]);
 
   // Toast: show when investing section scrolls into view, dismiss toggle

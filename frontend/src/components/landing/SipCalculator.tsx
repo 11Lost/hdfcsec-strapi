@@ -220,124 +220,133 @@ export default function SipCalculator() {
         </div>
 
         <div className="sip-calculator">
-          <div className="sip-input-panel">
-            <div className="sip-input-label">Stock or Scheme</div>
-            <div className="sip-search-wrapper" style={{ position: 'relative' }}>
-              <svg
-                className="sip-search-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
-              </svg>
-              <input
-                type="text"
-                className="sip-search"
-                placeholder="Search any stock, MF, F&O (E.g: Reliance)"
-                value={searchQuery}
-                onFocus={() => { if (searchResults.length > 0) setIsDropdownOpen(true); }}
-                onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              
-              {isDropdownOpen && searchResults.length > 0 && (
-                <div style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: 0,
-                  right: 0,
-                  backgroundColor: '#fff',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                  borderRadius: '0.375rem',
-                  marginTop: '0.25rem',
-                  maxHeight: '200px',
-                  overflowY: 'auto',
-                  zIndex: 10,
-                  border: '1px solid #e5e7eb'
-                }}>
-                  {searchResults.map((item) => (
-                    <div
-                      key={item.symbol}
-                      onClick={() => {
-                        setSelectedSymbol(item.symbol);
-                        setSearchQuery(item.name);
-                        setIsDropdownOpen(false);
-                      }}
-                      style={{
-                        padding: '0.5rem 0.75rem',
-                        cursor: 'pointer',
-                        borderBottom: '1px solid #f3f4f6',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center'
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f9fafb')}
-                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#fff')}
-                    >
-                      <div>
-                        <div style={{ fontWeight: 500, fontSize: '0.875rem', color: '#111827' }}>{item.name}</div>
-                        <div style={{ fontSize: '0.75rem', color: '#6b7280' }}>{item.symbol}</div>
+                  <div className="left-wrap">
+
+            
+            <div className="sip-input-panel">
+              <div className="sip-input-label">Stock or Scheme</div>
+              <div className="sip-search-wrapper" style={{ position: 'relative' }}>
+                <svg
+                  className="sip-search-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input
+                  type="text"
+                  className="sip-search"
+                  placeholder="Search any stock, MF, F&O (E.g: Reliance)"
+                  value={searchQuery}
+                  onFocus={() => { if (searchResults.length > 0) setIsDropdownOpen(true); }}
+                  onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                
+                {isDropdownOpen && searchResults.length > 0 && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0,
+                    right: 0,
+                    backgroundColor: '#fff',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    borderRadius: '0.375rem',
+                    marginTop: '0.25rem',
+                    maxHeight: '200px',
+                    overflowY: 'auto',
+                    zIndex: 10,
+                    border: '1px solid #e5e7eb'
+                  }}>
+                    {searchResults.map((item) => (
+                      <div
+                        key={item.symbol}
+                        onClick={() => {
+                          setSelectedSymbol(item.symbol);
+                          setSearchQuery(item.name);
+                          setIsDropdownOpen(false);
+                        }}
+                        style={{
+                          padding: '0.5rem 0.75rem',
+                          cursor: 'pointer',
+                          borderBottom: '1px solid #f3f4f6',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center'
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f9fafb')}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#fff')}
+                      >
+                        <div>
+                          <div style={{ fontWeight: 500, fontSize: '0.875rem', color: '#111827' }}>{item.name}</div>
+                          <div style={{ fontSize: '0.75rem', color: '#6b7280' }}>{item.symbol}</div>
+                        </div>
+                        <span style={{ fontSize: '0.75rem', color: '#6b7280', background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>
+                          {item.exchange}
+                        </span>
                       </div>
-                      <span style={{ fontSize: '0.75rem', color: '#6b7280', background: '#f3f4f6', padding: '2px 6px', borderRadius: '4px' }}>
-                        {item.exchange}
-                      </span>
-                    </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="sip-amount-header">
+                <div className="sip-input-label">
+                  {mode === 'SIP'
+                    ? 'Your Monthly Investment Amount'
+                    : 'Your Lumpsum Investment Amount'}
+                </div>
+                <div className="sip-amount-value">{formatCurrency(amount)}</div>
+              </div>
+              <div className="sip-slider-wrapper">
+                <input
+                  type="range"
+                  className="sip-slider"
+                  min={mode === 'SIP' ? 100 : 500}
+                  max={mode === 'SIP' ? 100000 : 10000000}
+                  value={amount}
+                  step={mode === 'SIP' ? 100 : 1000}
+                  onChange={(e) => setAmount(Number(e.target.value))}
+                />
+              </div>
+              <div className="sip-slider-labels">
+                <span className="sip-slider-label">
+                  {mode === 'SIP' ? '₹ 100' : '₹ 500'}
+                </span>
+                <span className="sip-slider-label">
+                  {mode === 'SIP' ? '₹ 1 Lakh' : '₹ 10Cr'}
+                </span>
+              </div>
+
+              <div className="sip-period">
+                <div className="sip-period-label">Period</div>
+                <div className="sip-period-buttons">
+                  {[1, 3, 5, 10, 15, 20].map((p) => (
+                    <button
+                      key={p}
+                      className={`sip-period-btn ${period === p ? 'active' : ''}`}
+                      onClick={() => setPeriod(p)}
+                    >
+                      {p}Y
+                    </button>
                   ))}
                 </div>
-              )}
-            </div>
-
-            <div className="sip-amount-header">
-              <div className="sip-input-label">
-                {mode === 'SIP'
-                  ? 'Your Monthly Investment Amount'
-                  : 'Your Lumpsum Investment Amount'}
-              </div>
-              <div className="sip-amount-value">{formatCurrency(amount)}</div>
-            </div>
-            <div className="sip-slider-wrapper">
-              <input
-                type="range"
-                className="sip-slider"
-                min={mode === 'SIP' ? 100 : 500}
-                max={mode === 'SIP' ? 100000 : 10000000}
-                value={amount}
-                step={mode === 'SIP' ? 100 : 1000}
-                onChange={(e) => setAmount(Number(e.target.value))}
-              />
-            </div>
-            <div className="sip-slider-labels">
-              <span className="sip-slider-label">
-                {mode === 'SIP' ? '₹ 100' : '₹ 500'}
-              </span>
-              <span className="sip-slider-label">
-                {mode === 'SIP' ? '₹ 1 Lakh' : '₹ 10Cr'}
-              </span>
-            </div>
-
-            <div className="sip-period">
-              <div className="sip-period-label">Period</div>
-              <div className="sip-period-buttons">
-                {[1, 3, 5, 10, 15, 20].map((p) => (
-                  <button
-                    key={p}
-                    className={`sip-period-btn ${period === p ? 'active' : ''}`}
-                    onClick={() => setPeriod(p)}
-                  >
-                    {p}Y
-                  </button>
-                ))}
               </div>
             </div>
-          </div>
-
+                           <div className="sip-disclaimer">
+          <strong>Disclaimer:</strong> The calculations shown here are based on actual historical prices for the selected asset over the specified period. Values may vary; Please consult your advisor. Past performance does not guarantee future returns.
+        </div>
+</div>
           <div className="sip-result-panel">
+
+
+
             <div
               className="sip-chart-container"
-              style={{ position: 'relative', width: '100%', height: '300px', margin: '0 auto' }}
+              style={{ position: 'relative', width: '100%', height: '270px', margin: '0 auto' }}
             >
               <Line data={chartData} options={chartOptions} />
               {loading && (
@@ -346,6 +355,10 @@ export default function SipCalculator() {
                 </div>
               )}
             </div>
+
+
+            
+
             <div className="sip-result-cards">
               <div className="sip-profit-card">
                 <div className="sip-profit-label">
@@ -365,7 +378,7 @@ export default function SipCalculator() {
               <div className="sip-summary-card">
                 <div className="sip-summary-title">
                   Investment Summary ({period} Years)
-                  {result?.name && <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>{result.name} (CAGR: {result.cagr}%)</div>}
+                  {/* {result?.name && <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>{result.name} (CAGR: {result.cagr}%)</div>} */}
                 </div>
                 <div className="sip-summary-row">
                   <div className="sip-summary-label">
@@ -390,9 +403,7 @@ export default function SipCalculator() {
           </div>
         </div>
 
-        <div className="sip-disclaimer">
-          <strong>Disclaimer:</strong> The calculations shown here are based on actual historical prices for the selected asset over the specified period. Values may vary; Please consult your advisor. Past performance does not guarantee future returns.
-        </div>
+       
       </div>
     </section>
   );

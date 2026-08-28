@@ -1,5 +1,7 @@
 'use client';
 
+import CountUp from './CountUp';
+
 interface TrustProps {
   data?: {
     counts?: Array<{
@@ -34,7 +36,9 @@ export default function Trust({ data }: TrustProps) {
               ? counts.map((item, i) => (
                   <div key={i} className="trust-stat">
                     <p className="trust-stat-label">{item.title}</p>
-                    <p className="trust-stat-value">{item.Count}</p>
+                    <p className="trust-stat-value">
+                      <CountUp target={item.Count ?? ''} duration={2000} />
+                    </p>
                   </div>
                 ))
               : [
@@ -45,7 +49,9 @@ export default function Trust({ data }: TrustProps) {
                 ].map((item, i) => (
                   <div key={i} className="trust-stat">
                     <p className="trust-stat-label">{item.label}</p>
-                    <p className="trust-stat-value">{item.value}</p>
+                    <p className="trust-stat-value">
+                      <CountUp target={item.value} duration={2000} />
+                    </p>
                   </div>
                 ))}
           </div>
