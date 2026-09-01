@@ -29,7 +29,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
   const [amount, setAmount] = useState<number>(1650);
   const [period, setPeriod] = useState<number>(5); // years
   
-  const [searchQuery, setSearchQuery] = useState<string>(data?.Name || 'Reliance');
+  const [searchQuery, setSearchQuery] = useState<string>(data?.Name || 'Reliance Industries Pvt Ltd');
   const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
   const [selectedSymbol, setSelectedSymbol] = useState<string>('RELIANCE.NS');
 
@@ -63,7 +63,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
   useEffect(() => {
     let active = true;
     const fetchSearch = async () => {
-      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance') {
+      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance Industries Pvt Ltd') {
         if (active) setSearchResults([]);
         return;
       }
@@ -251,6 +251,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
                 type="text"
                 className="sip-search"
                 placeholder="Search any stock, MF, F&O"
+                aria-label="Search for a stock or scheme"
                 value={searchQuery}
                 onFocus={() => { if (searchResults.length > 0) setIsDropdownOpen(true); }}
                 onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
@@ -316,6 +317,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
               <input
                 type="range"
                 className="sip-slider"
+                aria-label="Investment amount slider"
                 min={mode === 'SIP' ? 100 : 500}
                 max={mode === 'SIP' ? 100000 : 10000000}
                 value={amount}

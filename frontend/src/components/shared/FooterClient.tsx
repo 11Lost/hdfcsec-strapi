@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { STRAPI_BASE } from '@/lib/api';
+import Image from 'next/image';
 
 interface FooterMenuLink {
   label: string;
@@ -97,11 +98,12 @@ export default function FooterClient({ data }: FooterClientProps) {
                 href={buildUrl(btn.link)}
                 className="footer-quick-link"
                 target={btn.target}
+                aria-label={btn.label}
               >
                 {iconUrl && (
                   <Image
                     src={iconUrl}
-                    alt={btn.label}
+                    alt=""
                     className="footer-quick-link-icon"
                     width={24}
                     height={24}

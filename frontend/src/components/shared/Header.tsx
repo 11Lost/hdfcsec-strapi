@@ -60,7 +60,7 @@ export default function Header({ headerData }: { headerData?: any }) {
       <div className="header-main">
         <div className="header-main-container">
           <Link href="/" className="header-logo header-logo-large">
-            <Image src={logoUrl} alt={logoAlt} width={140} height={40} style={{ width: 140, height: 'auto' }} priority />
+            <Image src={logoUrl} alt={logoAlt} width={140} height={40} style={{ width: 140, height: 'auto' }} />
           </Link>
 
           <nav className="header-nav" id="headerNav">
@@ -117,10 +117,11 @@ export default function Header({ headerData }: { headerData?: any }) {
                 type="text"
                 className="header-search-input"
                 placeholder="Search stocks, funds..."
+                aria-label="Search stocks and funds"
               />
             </div>
 
-            <button className="header-icon-btn" title="Documents">
+            <button className="header-icon-btn" title="Documents" aria-label="Documents">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -133,7 +134,7 @@ export default function Header({ headerData }: { headerData?: any }) {
                 <line x1="16" y1="17" x2="8" y2="17" />
               </svg>
             </button>
-            <button className="header-icon-btn" title="Notifications">
+            <button className="header-icon-btn" title="Notifications" aria-label="Notifications">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -184,6 +185,7 @@ export default function Header({ headerData }: { headerData?: any }) {
           <button
             className="header-mobile-menu"
             onClick={() => setMobileNavOpen(true)}
+            aria-label="Open mobile menu"
           >
             <svg
               viewBox="0 0 24 24"
@@ -236,6 +238,7 @@ export default function Header({ headerData }: { headerData?: any }) {
             <button
               className="header-mobile-nav-close"
               onClick={() => setMobileNavOpen(false)}
+              aria-label="Close mobile menu"
             >
               <svg
                 viewBox="0 0 24 24"

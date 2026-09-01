@@ -913,6 +913,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px 20px;
+    min-height: 338px;
 }
 
 .market-item {
@@ -1015,6 +1016,7 @@ body {
     gap: 20px;
     animation: ticker-scroll 30s linear infinite;
     padding: 0 40px;
+    min-height: 65px;
 }
 
 @keyframes ticker-scroll {
@@ -2728,7 +2730,7 @@ body {
 .learn-topic-date {
     font-family: 'Inter-Regular', sans-serif;
     font-size: 13px;
-    color: #9CA3AF;
+    color: #4B5563;
 }
 
 .learn-topic-badge {
@@ -4670,15 +4672,21 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    .stock-hero {
+        padding-top: 120px;
+    }
     .stock-hero-content {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
-        padding: 20px 16px 16px;
+        padding: 0;
+
     }
 
     .stock-hero-company {
         width: 100%;
+        align-items: flex-start;
     }
 
     .stock-hero-logo {
@@ -5752,6 +5760,15 @@ body {
 
     .fo-stats-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+    .stock-time-controls button{
+        padding: 6px 7px !important;
+    }
+    .stock-time-btns {
+        button{
+            padding: 6px 8px !important;
+                font-size: 10px !important;
+        }
     }
 }
 

@@ -77,12 +77,12 @@ export default function CalendarEvent() {
                     <span>Select Period</span>
                     <ChevronDown size={16} />
                   </button>
-                  <button className="ce-icon-btn">
+                  <button className="ce-icon-btn" aria-label="Select Date">
                     <Calendar size={20} />
                   </button>
                 </div>
                 <div className="ce-filters-right">
-                  <button className="ce-icon-btn">
+                  <button className="ce-icon-btn" aria-label="Filter Events">
                     <Filter size={18} />
                   </button>
                   <div className="ce-divider"></div>

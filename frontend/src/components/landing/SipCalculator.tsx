@@ -28,8 +28,8 @@ export default function SipCalculator() {
   const [mode, setMode] = useState<'SIP' | 'LUMPSUM'>('SIP');
   const [amount, setAmount] = useState<number>(1650);
   const [period, setPeriod] = useState<number>(5); // years
-  
-  const [searchQuery, setSearchQuery] = useState<string>('Reliance');
+
+  const [searchQuery, setSearchQuery] = useState<string>('Reliance Industries Pvt Ltd');
   const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
   const [selectedSymbol, setSelectedSymbol] = useState<string>('RELIANCE.NS');
 
@@ -47,7 +47,7 @@ export default function SipCalculator() {
     yearlyData?: { label: string; invested: number; value: number }[];
   } | null>(null);
 
-  const [searchResults, setSearchResults] = useState<{symbol: string, name: string, exchange: string}[]>([]);
+  const [searchResults, setSearchResults] = useState<{ symbol: string, name: string, exchange: string }[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Debounce inputs to prevent API spam
@@ -63,7 +63,7 @@ export default function SipCalculator() {
   useEffect(() => {
     let active = true;
     const fetchSearch = async () => {
-      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance') {
+      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance Industries Pvt Ltd') {
         if (active) setSearchResults([]);
         return;
       }
@@ -220,9 +220,9 @@ export default function SipCalculator() {
         </div>
 
         <div className="sip-calculator">
-                  <div className="left-wrap">
+          <div className="left-wrap">
 
-            
+
             <div className="sip-input-panel">
               <div className="sip-input-label">Stock or Scheme</div>
               <div className="sip-search-wrapper" style={{ position: 'relative' }}>
@@ -239,13 +239,14 @@ export default function SipCalculator() {
                 <input
                   type="text"
                   className="sip-search"
-                  placeholder="Search any stock, MF, F&O (E.g: Reliance)"
+                  placeholder="Search any stock, MF, F&O (E.g: Reliance Industries Pvt Ltd)"
+                  aria-label="Search for a stock or scheme"
                   value={searchQuery}
                   onFocus={() => { if (searchResults.length > 0) setIsDropdownOpen(true); }}
                   onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                
+
                 {isDropdownOpen && searchResults.length > 0 && (
                   <div style={{
                     position: 'absolute',
@@ -305,6 +306,7 @@ export default function SipCalculator() {
                 <input
                   type="range"
                   className="sip-slider"
+                  aria-label="Investment amount slider"
                   min={mode === 'SIP' ? 100 : 500}
                   max={mode === 'SIP' ? 100000 : 10000000}
                   value={amount}
@@ -336,10 +338,10 @@ export default function SipCalculator() {
                 </div>
               </div>
             </div>
-                           <div className="sip-disclaimer">
-          <strong>Disclaimer:</strong> The calculations shown here are based on actual historical prices for the selected asset over the specified period. Values may vary; Please consult your advisor. Past performance does not guarantee future returns.
-        </div>
-</div>
+            <div className="sip-disclaimer">
+              <strong>Disclaimer:</strong> The calculations shown here are based on actual historical prices for the selected asset over the specified period. Values may vary; Please consult your advisor. Past performance does not guarantee future returns.
+            </div>
+          </div>
           <div className="sip-result-panel">
 
 
@@ -357,7 +359,7 @@ export default function SipCalculator() {
             </div>
 
 
-            
+
 
             <div className="sip-result-cards">
               <div className="sip-profit-card">
@@ -403,7 +405,7 @@ export default function SipCalculator() {
           </div>
         </div>
 
-       
+
       </div>
     </section>
   );

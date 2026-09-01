@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { STRAPI_BASE, fetchFooter } from '@/lib/api';
+import Image from 'next/image';
 
 interface FooterMenuLink {
   label: string;
@@ -48,14 +48,8 @@ function buildUrl(link?: string): string {
   return '/' + link.replace(/^\/+/, '');
 }
 
-export default async function Footer() {
-  let footer: FooterData | null = null;
-  try {
-    const res = await fetchFooter();
-    footer = res?.data as FooterData;
-  } catch (err) {
-    console.error('Failed to load footer:', err);
-  }
+export default function Footer({ footerData }: { footerData: FooterData | null }) {
+  let footer: FooterData | null = footerData;
 
   const logoUrl = footer?.Icon?.[0]?.iconImg?.url
     ? STRAPI_BASE + footer.Icon[0].iconImg.url
@@ -94,11 +88,12 @@ export default async function Footer() {
                 href={buildUrl(btn.link)}
                 className="footer-quick-link"
                 target={btn.target}
+                aria-label={btn.label}
               >
                 {iconUrl && (
                   <Image
                     src={iconUrl}
-                    alt={btn.label}
+                    alt=""
                     className="footer-quick-link-icon"
                     width={24}
                     height={24}

@@ -50,7 +50,7 @@ export default function Insights({ data }: InsightsProps) {
                 onClick={() => setActiveIndex(index)}
               >
                 <div className="card-compact">
-                  <h3 className="card-compact-title">{report.title}</h3>
+                  <h2 className="card-compact-title">{report.title}</h2>
                   <p className="card-compact-desc">{descText}</p>
                   {report.banner && (
                     <div className="card-compact-image">
@@ -67,7 +67,7 @@ export default function Insights({ data }: InsightsProps) {
                 <div className="card-expanded">
                   <div className="card-expanded-content">
                     <div className="card-expanded-top">
-                      <h3 className="card-expanded-title">{report.title}</h3>
+                      <h2 className="card-expanded-title">{report.title}</h2>
                     </div>
                     {stocks.length > 0 && (
                       <div className="insights-stocks">

@@ -190,7 +190,7 @@ export default function Investing({ data }: InvestingProps) {
               const img = item.BannerImg;
               return (
                 <div key={i} className="way-card">
-                  {item._parsedTitle && <h3 className="way-card-title">{item._parsedTitle}</h3>}
+                  {item._parsedTitle && <h2 className="way-card-title">{item._parsedTitle}</h2>}
                   {item._parsedDescription && (
                     <p className="way-card-description">{item._parsedDescription}</p>
                   )}

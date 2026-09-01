@@ -5,6 +5,7 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-media">
         <video className="hero-bg-video" autoPlay muted loop playsInline>
+          <track kind="captions" srcLang="en" label="English" default />
           <source src="/video/hero_bg_video.mp4" type="video/mp4" />
         </video>
       </div>
