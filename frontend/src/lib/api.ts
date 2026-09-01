@@ -3,7 +3,7 @@ export const STRAPI_BASE = process.env.NEXT_PUBLIC_STRAPI_URL || 'https://hdfc-s
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.hdfcsec.com';
 
 export async function fetchStrapi<T>(endpoint: string): Promise<T> {
-  console.log(`${STRAPI_BASE}${endpoint}`)
+  // console.log(`${STRAPI_BASE}${endpoint}`)
   const res = await fetch(`${STRAPI_BASE}${endpoint}`, {
     next: { revalidate: 30 },
   });
@@ -118,7 +118,7 @@ export function getStrapiMediaUrl(path?: string): string {
   if (path.startsWith('http')) {
     try {
       const url = new URL(path);
-      console.log(`${STRAPI_BASE}${url.pathname}${url.search}`);
+      // console.log(`${STRAPI_BASE}${url.pathname}${url.search}`);
 
       return `${STRAPI_BASE}${url.pathname}${url.search}`;
     } catch (e) {

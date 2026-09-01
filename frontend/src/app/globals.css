@@ -913,6 +913,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px 20px;
+    min-height: 338px;
 }
 
 .market-item {
@@ -1015,6 +1016,7 @@ body {
     gap: 20px;
     animation: ticker-scroll 30s linear infinite;
     padding: 0 40px;
+    min-height: 65px;
 }
 
 @keyframes ticker-scroll {
