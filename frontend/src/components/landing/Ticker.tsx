@@ -31,101 +31,50 @@ function escapeHtml(str: string): string {
 
 export default function Ticker({ initialData = [] }: { initialData?: any[] }) {
   const [currentFilter, setCurrentFilter] = useState<string>('positive');
-  const [gainers, setGainers] = useState<Stock[]>(() => {
-    if (!initialData || initialData.length === 0) return [];
-    return [...initialData]
-      .filter((idx: any) => idx.percentChange > 0)
-      .sort((a: any, b: any) => b.percentChange - a.percentChange)
-      .slice(0, 10)
-      .map((idx: any) => ({
-        F_NAME: idx.indexSymbol || idx.index,
-        LTP: String(idx.last),
-        PER_CHANGE: String(idx.percentChange),
-      }));
-  });
-  const [losers, setLosers] = useState<Stock[]>(() => {
-    if (!initialData || initialData.length === 0) return [];
-    return [...initialData]
-      .filter((idx: any) => idx.percentChange < 0)
-      .sort((a: any, b: any) => a.percentChange - b.percentChange)
-      .slice(0, 10)
-      .map((idx: any) => ({
-        F_NAME: idx.indexSymbol || idx.index,
-        LTP: String(idx.last),
-        PER_CHANGE: String(idx.percentChange),
-      }));
-  });
-  
-  const SECTORS_LIST = [
-    'NIFTY BANK',
-    'NIFTY AUTO',
-    'NIFTY IT',
-    'NIFTY FMCG',
-    'NIFTY METAL',
-    'NIFTY PHARMA',
-    'NIFTY REALTY',
-    'NIFTY MEDIA',
-    'NIFTY ENERGY',
-    'NIFTY INFRA',
-  ];
-
-  const [sectors, setSectors] = useState<Stock[]>(() => {
-    if (!initialData || initialData.length === 0) return [];
-    return initialData
-      .filter((idx: any) => SECTORS_LIST.includes(idx.indexSymbol || idx.index))
-      .slice(0, 10)
-      .map((idx: any) => ({
-        F_NAME: idx.indexSymbol || idx.index,
-        LTP: String(idx.last),
-        PER_CHANGE: String(idx.percentChange),
-      }));
-  });
+  const [gainers, setGainers] = useState<Stock[]>([]);
+  const [losers, setLosers] = useState<Stock[]>([]);
+  const [sectors, setSectors] = useState<Stock[]>([]);
   
   const tickerRef = useRef<HTMLDivElement>(null);
 
-
-
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch('/api/nse-indices');
+      const res = await fetch('/api/ticker-stocks');
       const json = await res.json();
-      const data = json.data || [];
+      const dataStocks = json.data || [];
 
-      // Top Gainers: Sort descending by percentChange
-      const topGainers = [...data]
+      const topGainers = [...dataStocks]
         .filter((idx: any) => idx.percentChange > 0)
         .sort((a: any, b: any) => b.percentChange - a.percentChange)
         .slice(0, 10)
         .map((idx: any) => ({
-          F_NAME: idx.indexSymbol || idx.index,
+          F_NAME: idx.indexSymbol,
           LTP: String(idx.last),
           PER_CHANGE: String(idx.percentChange),
         }));
 
-      // Top Losers: Sort ascending by percentChange
-      const topLosers = [...data]
+      const topLosers = [...dataStocks]
         .filter((idx: any) => idx.percentChange < 0)
         .sort((a: any, b: any) => a.percentChange - b.percentChange)
         .slice(0, 10)
         .map((idx: any) => ({
-          F_NAME: idx.indexSymbol || idx.index,
+          F_NAME: idx.indexSymbol,
           LTP: String(idx.last),
           PER_CHANGE: String(idx.percentChange),
         }));
 
-      // Sectors: match SECTORS_LIST
-      const mappedSectors = data
-        .filter((idx: any) => SECTORS_LIST.includes(idx.indexSymbol || idx.index))
-        .slice(0, 10)
+      // Show some key stocks in the 'Sectors' tab as requested
+      const keyStocks = dataStocks
+        .filter((idx: any) => ['MRF', 'AXISBANK', 'IDBI', 'RELIANCE', 'HDFCBANK', 'INFY'].some(sym => idx.indexSymbol?.includes(sym)))
         .map((idx: any) => ({
-          F_NAME: idx.indexSymbol || idx.index,
+          F_NAME: idx.indexSymbol,
           LTP: String(idx.last),
           PER_CHANGE: String(idx.percentChange),
         }));
 
       setGainers(topGainers);
       setLosers(topLosers);
-      setSectors(mappedSectors);
+      setSectors(keyStocks.length > 0 ? keyStocks : topGainers);
     } catch (err) {
       console.warn('[Ticker] Fetch failed:', err);
     }
