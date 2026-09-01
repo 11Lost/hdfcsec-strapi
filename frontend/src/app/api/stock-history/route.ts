@@ -36,11 +36,13 @@ export async function GET(req: NextRequest) {
     const startDate = new Date();
     startDate.setFullYear(endDate.getFullYear() - period);
 
-    const history = (await yahooFinance.historical(symbol, {
+    const chartData = (await yahooFinance.chart(symbol, {
       period1: startDate,
       period2: endDate,
       interval: '1mo',
-    })) as any[];
+    })) as any;
+
+    const history = (chartData.quotes || []).filter((q: any) => q.close !== null);
 
     if (history.length === 0) {
       return NextResponse.json({ error: 'No historical data' }, { status: 404 });

@@ -29,7 +29,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
   const [amount, setAmount] = useState<number>(1650);
   const [period, setPeriod] = useState<number>(5); // years
   
-  const [searchQuery, setSearchQuery] = useState<string>(data?.Name || 'Reliance');
+  const [searchQuery, setSearchQuery] = useState<string>(data?.Name || 'Reliance Industries Pvt Ltd');
   const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
   const [selectedSymbol, setSelectedSymbol] = useState<string>('RELIANCE.NS');
 
@@ -63,7 +63,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
   useEffect(() => {
     let active = true;
     const fetchSearch = async () => {
-      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance') {
+      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance Industries Pvt Ltd') {
         if (active) setSearchResults([]);
         return;
       }
