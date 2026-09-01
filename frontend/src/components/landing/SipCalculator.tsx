@@ -240,6 +240,7 @@ export default function SipCalculator() {
                   type="text"
                   className="sip-search"
                   placeholder="Search any stock, MF, F&O (E.g: Reliance Industries Pvt Ltd)"
+                  aria-label="Search for a stock or scheme"
                   value={searchQuery}
                   onFocus={() => { if (searchResults.length > 0) setIsDropdownOpen(true); }}
                   onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
@@ -305,6 +306,7 @@ export default function SipCalculator() {
                 <input
                   type="range"
                   className="sip-slider"
+                  aria-label="Investment amount slider"
                   min={mode === 'SIP' ? 100 : 500}
                   max={mode === 'SIP' ? 100000 : 10000000}
                   value={amount}

@@ -3,7 +3,7 @@ import './globals.css';
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
 import VendorInit from '@/components/shared/VendorInit';
-import { fetchHeader } from '@/lib/api';
+import { fetchFooter, fetchHeader } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'HDFC Securities - Trusted Partner for Your Investment Journey',
@@ -17,9 +17,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   let headerData = null;
+  let footerData = null;
   try {
     const res = await fetchHeader();
     headerData = res?.data || null;
+    const res2 = await fetchFooter();
+    footerData = res2?.data || null;
   } catch (error) {
     console.warn('[RootLayout] Failed to fetch header data');
   }
@@ -34,7 +37,7 @@ export default async function RootLayout({
       <body>
         <Header headerData={headerData} />
         <main>{children}</main>
-        <Footer />
+        <Footer footerData={footerData} />
         <VendorInit />
       </body>
     </html>

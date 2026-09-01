@@ -1,14 +1,17 @@
 import Ticker from '@/components/landing/Ticker';
 import MarketIndices from '@/components/landing/MarketIndices';
-import Investing from '@/components/landing/Investing';
-import SipCalculator from '@/components/landing/SipCalculator';
-import Products from '@/components/landing/Products';
-import CalendarEvent from '@/components/landing/CalendarEvent';
-import Insights from '@/components/landing/Insights';
-import Learn from '@/components/landing/Learn';
-import Trust from '@/components/landing/Trust';
 import Image from 'next/image';
 import { fetchHomePage, getStrapiMediaUrl, fetchNSEIndices } from '@/lib/api';
+import { preload } from 'react-dom';
+import dynamic from 'next/dynamic';
+
+const Investing = dynamic(() => import('@/components/landing/Investing'));
+const Products = dynamic(() => import('@/components/landing/Products'));
+const CalendarEvent = dynamic(() => import('@/components/landing/CalendarEvent'));
+const Insights = dynamic(() => import('@/components/landing/Insights'));
+const Learn = dynamic(() => import('@/components/landing/Learn'));
+const Trust = dynamic(() => import('@/components/landing/Trust'));
+const SipCalculator = dynamic(() => import('@/components/landing/SipCalculatorWrapper'));
 
 export default async function HomePage() {
   let pageData: Record<string, any> | null = null;
@@ -136,27 +139,32 @@ export default async function HomePage() {
     heroMediaAlt = heroBanner.BannerImg.alternativeText || 'Hero Banner';
   }
 
+  if (heroMediaMime.startsWith('video') || !heroMediaUrl) {
+    preload('/images/hero_bg.jpg', { as: 'image' });
+  }
+
   return (
     <>
       <section className="hero">
         <div className="hero-media">
+          <Image
+            className="hero-bg-image"
+            src={heroMediaUrl && !heroMediaMime.startsWith('video') ? heroMediaUrl : '/images/hero_bg.jpg'}
+            alt={heroMediaAlt || 'Hero Background'}
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
           {heroMediaMime.startsWith('video') ? (
-            <video className="hero-bg-video" autoPlay muted loop playsInline>
+            <video className="hero-bg-video" autoPlay muted loop playsInline preload="none">
               <source src={heroMediaUrl} type={heroMediaMime} />
             </video>
-          ) : heroMediaUrl ? (
-            <img
-              className="hero-bg-image"
-              src={heroMediaUrl}
-              alt={heroMediaAlt}
-              sizes="100vw"
-              style={{ objectFit: 'cover' }}
-            />
-          ) : (
-            <video className="hero-bg-video" autoPlay muted loop playsInline>
+          ) : !heroMediaUrl ? (
+            <video className="hero-bg-video" autoPlay muted loop playsInline preload="none">
               <source src="/video/hero_bg_video.mp4" type="video/mp4" />
             </video>
-          )}
+          ) : null}
         </div>
         <div className="container">
           <div className="hero-content">

@@ -1,6 +1,7 @@
 'use client';
 
 import { STRAPI_BASE } from '@/lib/api';
+import Image from 'next/image';
 
 interface FooterMenuLink {
   label: string;
@@ -67,7 +68,7 @@ export default function FooterClient({ data }: FooterClientProps) {
         <div className="footer-top">
           <div className="footer-logo">
             <div className="footer-logo-placeholder">
-              <img
+              <Image
                 src={logoUrl}
                 alt="HDFC Securities"
                 width={180}
@@ -96,13 +97,15 @@ export default function FooterClient({ data }: FooterClientProps) {
                 href={buildUrl(btn.link)}
                 className="footer-quick-link"
                 target={btn.target}
+                aria-label={btn.label}
               >
                 {iconUrl && (
-                  <img
+                  <Image
                     src={iconUrl}
-                    alt={btn.label}
+                    alt=""
                     className="footer-quick-link-icon"
-                    loading="lazy"
+                    width={24}
+                    height={24}
                   />
                 )}
                 {btn.label}

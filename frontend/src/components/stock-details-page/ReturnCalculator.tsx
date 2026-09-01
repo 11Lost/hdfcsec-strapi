@@ -251,6 +251,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
                 type="text"
                 className="sip-search"
                 placeholder="Search any stock, MF, F&O"
+                aria-label="Search for a stock or scheme"
                 value={searchQuery}
                 onFocus={() => { if (searchResults.length > 0) setIsDropdownOpen(true); }}
                 onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
@@ -316,6 +317,7 @@ export default function ReturnCalculator({ data }: { data?: any }) {
               <input
                 type="range"
                 className="sip-slider"
+                aria-label="Investment amount slider"
                 min={mode === 'SIP' ? 100 : 500}
                 max={mode === 'SIP' ? 100000 : 10000000}
                 value={amount}
