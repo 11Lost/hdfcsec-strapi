@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: 'HDFC Securities - Trusted Partner for Your Investment Journey',
   description:
     'HDFC Securities - A trusted partner for your investment journey since 1987. SEBI registered and committed to helping you achieve your financial goals.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function RootLayout({
