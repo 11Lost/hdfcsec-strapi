@@ -103,12 +103,11 @@ export default function ResearchAnalysis() {
         },
         scales: {
           x: {
+            border: { display: false, dash: [5, 5] },
             grid: {
               display: true,
               color: '#f3f4f6',
-              drawBorder: false,
               tickLength: 0,
-              borderDash: [5, 5],
             },
             ticks: {
               color: '#6b7280',
@@ -121,12 +120,11 @@ export default function ResearchAnalysis() {
             },
           },
           y: {
+            border: { display: false, dash: [5, 5] },
             grid: {
               display: true,
               color: '#f3f4f6',
-              drawBorder: false,
               tickLength: 0,
-              borderDash: [5, 5],
             },
             ticks: {
               color: '#6b7280',
