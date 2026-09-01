@@ -54,11 +54,12 @@ export default function Insights({ data }: InsightsProps) {
                   <p className="card-compact-desc">{descText}</p>
                   {report.banner && (
                     <div className="card-compact-image">
-                      <img
+                      <Image
                         src={getStrapiMediaUrl(report.banner.url)}
                         alt={report.banner.alternativeText || report.title || ''}
+                        width={400}
+                        height={300}
                         style={{ objectFit: 'cover' }}
-                        loading="lazy"
                       />
                     </div>
                   )}
@@ -84,11 +85,12 @@ export default function Insights({ data }: InsightsProps) {
                   </div>
                   {report.banner && (
                     <div className="card-expanded-image">
-                      <img
+                      <Image
                         src={getStrapiMediaUrl(report.banner.url)}
                         alt={report.banner.alternativeText || report.title || ''}
+                        width={600}
+                        height={400}
                         style={{ objectFit: 'cover' }}
-                        loading="lazy"
                       />
                     </div>
                   )}

@@ -4316,7 +4316,9 @@ body {
 
     .footer-contact {
         grid-template-columns: 1fr;
-
+        gap: 18px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
     }
 
     .footer-bottom {
@@ -5724,6 +5726,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    .footer-quick-links {
+        width: 318px;
+        margin: 0 auto 15px;
+    }
     .overview-section {
         padding: 40px 0;
     }

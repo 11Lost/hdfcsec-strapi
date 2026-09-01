@@ -145,12 +145,15 @@ export default async function HomePage() {
               <source src={heroMediaUrl} type={heroMediaMime} />
             </video>
           ) : heroMediaUrl ? (
-            <img
+            <Image
               className="hero-bg-image"
               src={heroMediaUrl}
               alt={heroMediaAlt}
+              width={1920}
+              height={1080}
               sizes="100vw"
               style={{ objectFit: 'cover' }}
+              priority
             />
           ) : (
             <video className="hero-bg-video" autoPlay muted loop playsInline>

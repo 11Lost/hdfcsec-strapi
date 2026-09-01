@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
 
 interface Stock {
   F_NAME?: string;
@@ -167,7 +168,7 @@ export default function Ticker({ initialData = [] }: { initialData?: any[] }) {
           <div className="ticker-price">{formatPrice(price)}</div>
         </div>
         <div className="ticker-sparkline">
-          <img src={imgSrc} alt={imgAlt} />
+          <Image src={imgSrc} alt={imgAlt} width={60} height={20} />
         </div>
         <div className="ticker-change">
           {sign}

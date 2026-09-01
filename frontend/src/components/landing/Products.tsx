@@ -35,13 +35,12 @@ export default function Products({ data }: ProductsProps) {
               <a key={i} href="#" className="product-card">
                 <div className="product-icon">
                   {img && (
-                    <img
+                    <Image
                       src={getStrapiMediaUrl(img.url)}
                       alt={img.alternativeText || product.title || ''}
                       width={56}
                       height={56}
                       style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                      loading="lazy"
                     />
                   )}
                 </div>

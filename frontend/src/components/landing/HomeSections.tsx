@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 // Dynamic imports with ssr: false - only runs on client
@@ -51,13 +52,14 @@ export default function HomeSections({
               <source src={heroMediaUrl} type={heroMediaMime} />
             </video>
           ) : heroMediaUrl ? (
-            <img
+            <Image
               className="hero-bg-image"
               src={heroMediaUrl}
               alt={heroMediaAlt}
               width={1920}
               height={1080}
-              fetchPriority="high"
+              sizes="100vw"
+              priority
             />
           ) : (
             <video className="hero-bg-video" autoPlay muted loop playsInline preload="metadata">

@@ -60,7 +60,7 @@ export default function Header({ headerData }: { headerData?: any }) {
       <div className="header-main">
         <div className="header-main-container">
           <Link href="/" className="header-logo header-logo-large">
-            <img src={logoUrl} alt={logoAlt} width={140} height={40} style={{ width: 140, height: 'auto' }} />
+            <Image src={logoUrl} alt={logoAlt} width={140} height={40} style={{ width: 140, height: 'auto' }} priority />
           </Link>
 
           <nav className="header-nav" id="headerNav">
