@@ -34,7 +34,7 @@ export default function Ticker({ initialData = [] }: { initialData?: any[] }) {
   const [gainers, setGainers] = useState<Stock[]>([]);
   const [losers, setLosers] = useState<Stock[]>([]);
   const [sectors, setSectors] = useState<Stock[]>([]);
-  
+
   const tickerRef = useRef<HTMLDivElement>(null);
 
   const fetchData = useCallback(async () => {
@@ -153,7 +153,7 @@ export default function Ticker({ initialData = [] }: { initialData?: any[] }) {
       <div className="ticker-wrapper">
         <div ref={tickerRef} className="ticker-content">
           {stocks.length === 0 ? (
-            <div className="ticker-item" style={{ opacity: 0.5, padding: '0 1rem' }}>
+            <div className="ticker-item" style={{ opacity: 0.5, padding: '0 1rem', height: '72px' }}>
               Loading…
             </div>
           ) : (
