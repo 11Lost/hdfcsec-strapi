@@ -33,29 +33,34 @@ export default async function StockDetailsPage() {
           <Reports data={data} />
         </div>
       </div> */}
-
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: '65% calc(35% - 24px)', gap: '24px', paddingBottom: '40px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <CompanyOverview data={data} />
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <News data={data} />
-        </div>
-      </div>
-
-      <div className="container" style={{ display: 'grid', gap: '24px', paddingBottom: '40px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <PeerComparison />
-          <ReturnCalculator data={data} />
+      <div className="CompanyWrapper">
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: '65% calc(35% - 24px)', gap: '24px', paddingBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <CompanyOverview data={data} />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <News data={data} />
+          </div>
         </div>
       </div>
 
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: '65% calc(35% - 24px)', gap: '24px', paddingBottom: '40px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <ResearchAnalysis />
+      
+        <div className="container" style={{ display: 'grid', gap: '24px', paddingBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <PeerComparison />
+            <ReturnCalculator data={data} />
+          </div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <Reports data={data} />
+      
+
+      <div className="researchAnalysisWrapper">
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: '65% calc(35% - 24px)', gap: '24px', paddingBottom: '40px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <ResearchAnalysis />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <Reports data={data} />
+          </div>
         </div>
       </div>
 

@@ -835,7 +835,7 @@ body {
     color: #292929;
     line-height: 1.6;
     margin-bottom: 32px;
-    max-width: 480px;
+    max-width: 400px;
 }
 
 /* Hero button uses global .btn and .btn-primary classes */
@@ -1005,7 +1005,7 @@ body {
 }
 
 .ticker-wrapper {
-
+    min-height: 132px;
     overflow: hidden;
     position: relative;
     padding: 30px 0;
@@ -1129,6 +1129,9 @@ body {
 }
 
 @media (max-width: 768px) {
+    .ticker-wrapper {
+        min-height: auto;
+    }
     .hero-bg-video {
         top: -5px;
     }
@@ -3352,8 +3355,10 @@ body {
 /* ===========================
    Left Panel - Inputs
    =========================== */
+.sip-calculator .left-wrap{
+    max-width: 570px;
+}
 .sip-input-panel {
-    flex: 0 0 480px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
@@ -3536,6 +3541,7 @@ body {
 .sip-chart-container canvas {
     width: 100% !important;
     height: 100% !important;
+    max-height: 300px;
 }
 
 /* Result Cards Row */
@@ -3663,7 +3669,10 @@ body {
 
 @media (max-width: 768px) {
     .sip-section {
-        padding: 30px 0;
+        padding: 0;
+    }
+    .sip-section .container {
+        padding: 0;
     }
 
     .sip-header {
@@ -3682,6 +3691,7 @@ body {
 
     .sip-input-panel {
         padding: 10px;
+
     }
 
     .sip-profit-value {
@@ -4756,6 +4766,10 @@ body {
         padding: 12px 14px;
         font-size: 12px;
     }
+
+    .peer-section .container{
+        padding: 0;
+    }
 }
 
 /* Stock Overview Section Styles */
@@ -5104,6 +5118,9 @@ body {
 }
 
 @media (max-width: 768px) {
+    .stock-overview-content {
+        margin-bottom: 0;
+    }
     .stock-overview-section {
         padding: 24px 0;
     }
@@ -5135,7 +5152,7 @@ body {
     }
 
     .stock-fund-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px;
     }
 
@@ -5734,16 +5751,21 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    .overview-card{
+        padding: 16px !important;
+    }
     .footer-quick-links {
         width: 318px;
         margin: 0 auto 15px;
     }
     .overview-section {
-        padding: 40px 0;
+        padding: 20px 0 30px;
     }
 
     .overview-title {
-        font-size: 32px;
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .market-depth-tables {
@@ -5845,6 +5867,7 @@ body {
     border-radius: 16px;
     border: 1px solid #E5E7EB;
     padding: 28px;
+    margin-top: 40px;
 }
 
 .company-news-title {
@@ -6123,20 +6146,26 @@ body {
 
     .company-news-card {
         max-width: 100%;
+        padding:  16px !important;
     }
 }
 
 @media (max-width: 768px) {
+    .company-news-card {
+        margin-top: 0
+    }
     .company-section {
-        padding: 40px 0;
+        padding: 30px 0 0;
     }
 
     .company-title {
-        font-size: 32px;
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .company-tabs {
         gap: 0;
+        overflow-y: hidden;
     }
 
     .company-tab {
@@ -6442,7 +6471,7 @@ body {
 
 @media (max-width: 768px) {
     .peer-section {
-        padding: 60px 0;
+        padding: 20px 0 0;
     }
 
     .peer-header {
@@ -6465,6 +6494,9 @@ body {
 
     .peer-chart-container {
         padding: 20px;
+    }
+    .peer-table-container{
+        max-width: 320px;
     }
 }
 
@@ -6697,7 +6729,7 @@ body {
 
 @media (max-width: 768px) {
     .research-section {
-        padding: 60px 0;
+        padding:0;
     }
 
     .research-title {
@@ -6851,13 +6883,16 @@ body {
 /* ===========================
    Responsive Design
    =========================== */
+
+
+
 @media (max-width: 768px) {
     .card-expanded-content {
         justify-content: start;
     }
 
     .faq-section {
-        padding: 60px 0;
+        padding: 20px 0;
     }
 
     .faq-title {
@@ -6904,5 +6939,25 @@ body {
         scale: 1;
         min-width: 100%;
     }
-
+    .CompanyWrapper{
+        display: flex;        
+    }
+    .CompanyWrapper .container{
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 16px !important;
+    }
+    .CompanyWrapper .company-section .container{
+        padding: 0 !important;
+    }
+    .researchAnalysisWrapper  .container{
+        display: flex !important;
+        flex-direction: column;
+        padding-bottom: 20px !important;
+    }
+    .researchAnalysisWrapper .research-section .container{
+        padding: 0 !important;
+    }
+    
 }
+

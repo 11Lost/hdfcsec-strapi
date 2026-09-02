@@ -161,6 +161,7 @@ export default function Investing({ data }: InvestingProps) {
                   <div key={i} className="swiper-slide">
                     <div className="investing-card">
                       <div className="investing-card-image">
+                        {getStrapiMediaUrl(img?.url)}
                         {img && (
                           <Image
                             src={getStrapiMediaUrl(img.url)}

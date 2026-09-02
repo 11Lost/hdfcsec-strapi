@@ -149,49 +149,51 @@ export default function ResearchAnalysis() {
   }, []);
 
   return (
-    <section id="research-analysis" className="research-section">
-      <div className="container">
-        <div className="research-header">
-          <h2 className="research-title">
-            Research <span>Analysis</span>
-          </h2>
-          <p className="research-subtitle">
-            Professional research that explains how the company is performing
-            and what experts expect in the future.
-          </p>
-        </div>
+    <div className="researchWrapper">
+      <section id="research-analysis" className="research-section">
+        <div className="container">
+          <div className="research-header">
+            <h2 className="research-title">
+              Research <span>Analysis</span>
+            </h2>
+            <p className="research-subtitle">
+              Professional research that explains how the company is performing
+              and what experts expect in the future.
+            </p>
+          </div>
 
-        <div className="research-content">
-          <div className="research-chart-panel">
-            <div className="research-chart-wrapper" style={{ height: '350px', position: 'relative' }}>
-              <div className="research-chart-label" style={{ position: 'absolute', top: '-10px', left: '0', fontSize: '12px', color: '#6b7280', fontWeight: 600 }}>Price (₹)</div>
-              <div className="research-chart-container" style={{ width: '100%', height: '100%', paddingTop: '10px' }}>
-                <canvas id="researchChart" />
-              </div>
-            </div>
-            <div className="research-stats-bar" style={{ marginTop: '30px' }}>
-              {[
-                ['Current Market Price', '1548.50'],
-                ['Target', '1850'],
-                ['Stop loss', '1500'],
-                ['Reco Price', '₹3110.30'],
-                ['Reco Date', '29 Jul 2024'],
-                ['Call Type', 'SIP'],
-              ].map(([label, value]) => (
-                <div key={label} className="research-stat">
-                  <div className="research-stat-label" style={{ fontSize: '13px', color: '#6b7280', marginBottom: '8px' }}>{label}</div>
-                  <div
-                    className={`research-stat-value ${label === 'Reco Price' ? 'highlight' : ''}`}
-                    style={{ fontSize: '16px', fontWeight: 600, color: '#111928' }}
-                  >
-                    {value}
-                  </div>
+          <div className="research-content">
+            <div className="research-chart-panel">
+              <div className="research-chart-wrapper" style={{ height: '350px', position: 'relative' }}>
+                <div className="research-chart-label" style={{ position: 'absolute', top: '-10px', left: '0', fontSize: '12px', color: '#6b7280', fontWeight: 600 }}>Price (₹)</div>
+                <div className="research-chart-container" style={{ width: '100%', height: '100%', paddingTop: '10px' }}>
+                  <canvas id="researchChart" />
                 </div>
-              ))}
+              </div>
+              <div className="research-stats-bar" style={{ marginTop: '30px' }}>
+                {[
+                  ['Current Market Price', '1548.50'],
+                  ['Target', '1850'],
+                  ['Stop loss', '1500'],
+                  ['Reco Price', '₹3110.30'],
+                  ['Reco Date', '29 Jul 2024'],
+                  ['Call Type', 'SIP'],
+                ].map(([label, value]) => (
+                  <div key={label} className="research-stat">
+                    <div className="research-stat-label" style={{ fontSize: '13px', color: '#6b7280', marginBottom: '8px' }}>{label}</div>
+                    <div
+                      className={`research-stat-value ${label === 'Reco Price' ? 'highlight' : ''}`}
+                      style={{ fontSize: '16px', fontWeight: 600, color: '#111928' }}
+                    >
+                      {value}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
