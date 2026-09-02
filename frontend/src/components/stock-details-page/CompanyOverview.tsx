@@ -89,7 +89,7 @@ export default function CompanyOverview({ data }: { data?: any }) {
             displayColors: false,
             callbacks: {
               title: (items) => {
-                const val = items[0].parsed.y.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+                const val = items[0]?.parsed?.y?.toLocaleString('en-IN', { minimumFractionDigits: 2 });
                 return `Reliance Industries Ltd: ${val}`;
               },
               label: (item) => {
@@ -100,20 +100,18 @@ export default function CompanyOverview({ data }: { data?: any }) {
         },
         scales: {
           x: {
+            border: { display: false, dash: [5, 5] },
             grid: {
               color: '#f3f4f6',
-              drawBorder: false,
               tickLength: 0,
-              borderDash: [5, 5]
             },
             ticks: { display: false }
           },
           y: {
+            border: { display: false, dash: [5, 5] },
             grid: {
               color: '#f3f4f6',
-              drawBorder: false,
               tickLength: 0,
-              borderDash: [5, 5]
             },
             ticks: { display: false },
             min: 1300,
