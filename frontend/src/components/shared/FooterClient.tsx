@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { STRAPI_BASE } from '@/lib/api';
-import Image from 'next/image';
 
 interface FooterMenuLink {
   label: string;
