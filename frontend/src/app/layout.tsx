@@ -15,6 +15,35 @@ export const metadata: Metadata = {
   },
 };
 
+import localFont from 'next/font/local';
+
+const inter = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Inter-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Inter-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Inter-SemiBold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Inter-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -31,13 +60,7 @@ export default async function RootLayout({
     console.warn('[RootLayout] Failed to fetch header data');
   }
   return (
-    <html lang="en">
-      <head>
-        <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-      </head>
+    <html lang="en" className={inter.variable}>
       <body>
         <Header headerData={headerData} />
         <main>{children}</main>
