@@ -116,8 +116,8 @@ export default function FooterClient({ data }: FooterClientProps) {
 
         <div className="footer-columns">
           {menus.map((menu, i) => (
-            <div key={i}>
-              <h4 className="footer-column-title">{menu.title}</h4>
+            <details key={i} className="footer-column">
+              <summary className="footer-column-title">{menu.title}</summary>
               <ul className="footer-column-list">
                 {menu.subMenus?.map((sub, j) => {
                   if (sub.MenuLink && sub.MenuLink.length) {
@@ -139,7 +139,7 @@ export default function FooterClient({ data }: FooterClientProps) {
                   );
                 })}
               </ul>
-            </div>
+            </details>
           ))}
         </div>
 
