@@ -3676,6 +3676,14 @@ body {
         padding: 0 15px;
     }
 
+    #return-calculator.sip-section > .container {
+        padding: 0;
+    }
+    #return-calculator.sip-section .sip-disclaimer,
+    #return-calculator.sip-section .sip-disclaimer strong{
+        color: #0006;
+    }
+
     .sip-header {
         flex-direction: column;
         gap: 16px;
