@@ -5964,6 +5964,7 @@ body {
     border-bottom: 2px solid #E5E7EB;
     margin-bottom: 28px;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .company-tab {
