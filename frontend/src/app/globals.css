@@ -355,9 +355,8 @@ body {
 .header-nav-item {
     position: relative;
     padding: 8px 5px;
-    font-family: 'Inter-SemiBold', sans-serif;
+    font-family: 'Inter-Regular', sans-serif;
     font-size: 14px;
-    font-weight: 600;
     color: #374151;
     text-decoration: none;
     cursor: pointer;
@@ -443,9 +442,9 @@ body {
 .header-search-input {
     width: 220px;
     padding: 10px 16px 10px 40px;
-    background-color: #F1F5F9;
-    border: 1px solid transparent;
-    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #0003;
+    border-radius: 50px;
     font-family: 'Inter-Regular', sans-serif;
     font-size: 14px;
     color: #111827;
