@@ -1138,6 +1138,7 @@ body {
 
     .hero-image {
         height: auto;
+        width: 320px;
     }
 
     .hero-content {
@@ -1168,7 +1169,7 @@ body {
     .hero {
         padding: 60px 0 0;
         min-height: auto;
-        max-height: 960px;
+        max-height: none;
     }
 
     .ticker-section {
@@ -3644,7 +3645,7 @@ body {
     margin-top: 24px;
     font-family: 'Inter-Regular', sans-serif;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.4);
+    color: #FFF;
     line-height: 1.6;
 }
 
@@ -3669,10 +3670,10 @@ body {
 
 @media (max-width: 768px) {
     .sip-section {
-        padding: 0;
+        padding: 30px 0 0;
     }
-    .sip-section .container {
-        padding: 0;
+    .sip-section > .container {
+        padding: 0 15px;
     }
 
     .sip-header {
@@ -3728,7 +3729,7 @@ body {
 
     .sip-disclaimer,
     .sip-disclaimer strong {
-        color: rgb(0 0 0 / 40%);
+        color: #FFF
     }
 }
 
@@ -4306,7 +4307,8 @@ body {
 
     .footer-top {
         flex-direction: column;
-        text-align: center;
+        align-items: start;
+        text-align: left;
         gap: 10px;
         margin-bottom: 10px;
         padding-bottom: 10px;
