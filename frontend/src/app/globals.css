@@ -522,7 +522,7 @@ body {
     background-color: #E02424;
     color: var(--color-white);
     border: none;
-    border-radius: 10px;
+    border-radius: 45px;
     font-family: 'Inter-SemiBold', sans-serif;
     font-size: 14px;
     font-weight: 600;
@@ -541,7 +541,7 @@ body {
     background-color: transparent;
     color: #111827;
     border: 1px solid #E5E7EB;
-    border-radius: 10px;
+    border-radius: 45px;
     font-family: 'Inter-SemiBold', sans-serif;
     font-size: 14px;
     font-weight: 600;
