@@ -3242,7 +3242,7 @@ body {
 
 /* SIP Calculator Section Styles */
 .sip-section {
-    padding: 60px 0 30px;
+    padding: 40px 0 30px;
     background-color: var(--color-white);
 }
 
@@ -3652,7 +3652,10 @@ body {
 .sip-disclaimer strong {
     color: rgba(255, 255, 255, 0.6);
 }
-
+#return-calculator.sip-section .sip-disclaimer,
+#return-calculator.sip-section .sip-disclaimer strong{
+    color: #656565;
+}
 /* ===========================
    Responsive Design
    =========================== */
