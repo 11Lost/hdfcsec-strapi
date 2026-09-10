@@ -1,4 +1,5 @@
 'use client';
+import '@/styles/Insights.css';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -55,7 +56,7 @@ export default function Insights({ data }: InsightsProps) {
                   {report.banner && (
                     <div className="card-compact-image">
                       <Image
-                        src={getStrapiMediaUrl(report.banner.url)}
+                        src={getStrapiMediaUrl(report.banner.url, 'webp')}
                         alt={report.banner.alternativeText || report.title || ''}
                         width={400}
                         height={300}
@@ -86,7 +87,7 @@ export default function Insights({ data }: InsightsProps) {
                   {report.banner && (
                     <div className="card-expanded-image">
                       <Image
-                        src={getStrapiMediaUrl(report.banner.url)}
+                        src={getStrapiMediaUrl(report.banner.url, 'webp')}
                         alt={report.banner.alternativeText || report.title || ''}
                         width={600}
                         height={400}

@@ -1,0 +1,496 @@
+/* SIP Calculator Section Styles */
+.sip-section {
+    padding: 40px 0 30px;
+    background-color: var(--color-white);
+}
+
+/* Header */
+.sip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    gap: 24px;
+}
+
+.sip-header-left {
+    flex: 1;
+}
+
+.sip-title {
+    font-family: 'Inter-Bold', 'Inter-SemiBold', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    background: linear-gradient(to right, #111827 0%, #E02424 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sip-title span {
+    color: var(--color-red);
+}
+
+.sip-info-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.sip-info-icon:hover {
+    opacity: 0.7;
+}
+
+.sip-subtitle {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 16px;
+    color: #6B7280;
+    line-height: 1.6;
+}
+
+/* SIP / Lumpsum Toggle */
+.sip-toggle {
+    display: flex;
+    background-color: #F1F5F9;
+    border-radius: 12px;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.sip-toggle-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: #6B7280;
+}
+
+.sip-toggle-btn.active {
+    background-color: #0F2744;
+    color: var(--color-white);
+    box-shadow: 0 2px 8px rgba(15, 39, 68, 0.3);
+}
+
+.sip-toggle-btn:hover:not(.active) {
+    color: #374151;
+}
+
+/* Main Calculator Container */
+.sip-calculator {
+    background: radial-gradient(circle, rgba(3, 42, 83, 1) 24%, rgba(2, 39, 78, 0.93) 72%, rgba(0, 29, 60, 1) 100%);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sip-calculator::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(30, 66, 159, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Left Panel - Inputs */
+.sip-calculator .left-wrap {
+    max-width: 570px;
+}
+
+.sip-input-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.sip-input-label {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 0;
+}
+
+/* Search Input */
+.sip-search {
+    width: 100%;
+    padding: 14px 16px 14px 44px;
+    background-color: var(--color-white);
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: #6B7280;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.sip-search:focus {
+    border-color: var(--color-blue);
+}
+
+.sip-search-wrapper {
+    position: relative;
+    margin-bottom: 32px;
+}
+
+.sip-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #9CA3AF;
+    pointer-events: none;
+}
+
+/* Monthly Amount */
+.sip-amount-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.sip-amount-value {
+    font-family: 'Inter-Bold', 'Inter-SemiBold', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+/* Custom Range Slider */
+.sip-slider-wrapper {
+    margin-bottom: 8px;
+}
+
+.sip-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(164, 202, 254, 0.2);
+    outline: none;
+    cursor: pointer;
+}
+
+.sip-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.sip-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.sip-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sip-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.sip-slider-label {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Period Buttons */
+.sip-period {
+    margin-top: 32px;
+}
+
+.sip-period-label {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 16px;
+}
+
+.sip-period-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sip-period-btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sip-period-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+}
+
+.sip-period-btn.active {
+    background-color: var(--color-blue);
+    border-color: var(--color-blue);
+    color: var(--color-white);
+}
+
+/* Right Panel - Results */
+.sip-result-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Chart Container */
+.sip-chart-container {
+    flex: 1;
+    position: relative;
+    min-height: 280px;
+}
+
+.sip-chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 300px;
+}
+
+/* Result Cards Row */
+.sip-result-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.sip-profit-card {
+    background: rgba(20, 37, 62, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    flex: 0 0 auto;
+    min-width: 200px;
+}
+
+.sip-profit-label {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+}
+
+.sip-profit-value {
+    font-family: 'Inter-Bold', 'Inter-SemiBold', sans-serif;
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.sip-profit-rate {
+    color: #4ADE80;
+}
+
+.sip-summary-card {
+    background: rgba(20, 37, 62, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 12px 24px;
+    flex: 1;
+}
+
+.sip-summary-title {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 10px;
+}
+
+.sip-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+}
+
+.sip-summary-row + .sip-summary-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 6px;
+    padding-top: 7px;
+}
+
+.sip-summary-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.sip-summary-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.sip-summary-dot.total {
+    background-color: #3B82F6;
+}
+
+.sip-summary-dot.invested {
+    background-color: #F87171;
+}
+
+.sip-summary-amount {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    color: var(--color-white);
+}
+
+/* Disclaimer */
+.sip-disclaimer {
+    margin-top: 24px;
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 12px;
+    color: #FFF;
+    line-height: 1.6;
+}
+
+.sip-disclaimer strong {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+#return-calculator.sip-section .sip-disclaimer,
+#return-calculator.sip-section .sip-disclaimer strong {
+    color: #656565;
+}
+
+/* SIP Responsive */
+@media (max-width: 1100px) {
+    .sip-calculator {
+        flex-direction: column;
+        padding: 28px;
+    }
+
+    .sip-input-panel {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sip-section {
+        padding: 30px 0 0;
+    }
+
+    .sip-section > .container {
+        padding: 0 15px;
+    }
+
+    #return-calculator.sip-section > .container {
+        padding: 0;
+    }
+
+    #return-calculator.sip-section .sip-disclaimer,
+    #return-calculator.sip-section .sip-disclaimer strong {
+        color: #0006;
+    }
+
+    .sip-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .sip-title {
+        font-size: 32px;
+    }
+
+    .sip-calculator {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .sip-input-panel {
+        padding: 10px;
+    }
+
+    .sip-profit-value {
+        font-size: 28px;
+    }
+
+    .sip-result-cards {
+        flex-direction: column;
+    }
+
+    .sip-profit-card {
+        min-width: auto;
+        padding: 20px 10px;
+    }
+
+    .sip-summary-card {
+        padding: 20px 10px;
+    }
+
+    .sip-period-btn {
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .sip-input-label {
+        width: 50%;
+    }
+
+    .sip-period {
+        margin-top: 15px;
+    }
+
+    .sip-disclaimer,
+    .sip-disclaimer strong {
+        color: #FFF;
+    }
+}

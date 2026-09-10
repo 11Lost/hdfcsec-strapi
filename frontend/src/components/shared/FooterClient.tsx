@@ -69,7 +69,7 @@ export default function FooterClient({ data }: FooterClientProps) {
           <div className="footer-logo">
             <div className="footer-logo-placeholder">
               <Image
-                src={logoUrl}
+                src={logoUrl ? (logoUrl.includes('?') ? logoUrl + '&format=webp' : logoUrl + '?format=webp') : '/images/hdfc_white_logo.svg'}
                 alt="HDFC Securities"
                 width={180}
                 height={40}
@@ -101,7 +101,7 @@ export default function FooterClient({ data }: FooterClientProps) {
               >
                 {iconUrl && (
                   <Image
-                    src={iconUrl}
+                    src={iconUrl ? (iconUrl.includes('?') ? iconUrl + '&format=webp' : iconUrl + '?format=webp') : ''}
                     alt=""
                     className="footer-quick-link-icon"
                     width={24}

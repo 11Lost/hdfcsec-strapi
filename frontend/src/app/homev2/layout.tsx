@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import '../globals.css';
 import Header from '@/components/shared/Header';
 import FooterClient from '@/components/shared/FooterClient';
 import VendorInit from '@/components/shared/VendorInit';
@@ -35,8 +34,18 @@ export default async function HomeV2Layout({
   return (
     <>
       <head>
+        {/* Google Fonts - Inter with all weights */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
         {/* Inline perf CSS */}
         <style dangerouslySetInnerHTML={{ __html: perfCss }} />
+        {/* Load full stylesheet asynchronously — non-render-blocking */}
+        <link rel="stylesheet" href="/globals.css" media="print" suppressHydrationWarning />
+        <script dangerouslySetInnerHTML={{ __html: `document.querySelectorAll('link[media="print"]').forEach(l=>{l.media='all';l.onload=null;l.onerror=null;})` }} />
       </head>
       <body>
         <Header />

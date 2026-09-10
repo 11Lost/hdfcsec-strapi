@@ -1,0 +1,427 @@
+/* Calendar Event Section Styles */
+.calendar-section {
+    padding: 50px 0;
+    background: linear-gradient(135deg, #0A1628 0%, #0F2744 40%, #1E3A5F 100%);
+}
+
+.calendar-title {
+    font-family: 'Inter-Bold', 'Inter-SemiBold', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.calendar-content {
+    width: 100%;
+}
+
+/* Tabs */
+.calendar-tabs {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 28px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+}
+
+.calendar-tab {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    background: none;
+    border: none;
+    padding: 12px 0;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.calendar-tab:hover {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.calendar-tab.active {
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+.calendar-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-white);
+    border-radius: 1px;
+}
+
+/* Controls Bar */
+.calendar-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.calendar-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: var(--color-white);
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-select:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.calendar-select svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.calendar-icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.calendar-icon-btn svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+.calendar-controls-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.calendar-filter-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.calendar-filter-btn:hover {
+    color: var(--color-white);
+}
+
+.calendar-filter-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.calendar-time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.calendar-time svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.calendar-time-chevron {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+}
+
+/* Main Layout (Table + Sidebar) */
+.calendar-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+/* Data Table */
+.calendar-table-wrapper {
+    flex: 1;
+    overflow-x: auto;
+    border-radius: 12px;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.calendar-table thead th {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+    user-select: none;
+}
+
+.calendar-table thead th.sortable {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.calendar-table thead th.sortable:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.calendar-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background-color 0.2s ease;
+}
+
+.calendar-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.calendar-table tbody td {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 16px;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* Country Cell */
+.calendar-country {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calendar-flag {
+    width: 22px;
+    height: 16px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.calendar-currency {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Importance Stars */
+.calendar-importance {
+    display: flex;
+    gap: 2px;
+}
+
+.calendar-star {
+    width: 14px;
+    height: 14px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.calendar-star.filled {
+    color: #FBBF24;
+}
+
+/* Event Name */
+.calendar-event-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-white);
+    font-weight: 500;
+}
+
+.calendar-event-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+}
+
+/* Data Values */
+.calendar-val {
+    font-size: 14px;
+}
+
+.calendar-val.actual {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+}
+
+.calendar-val.forecast {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.calendar-val.previous {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.calendar-val.positive {
+    color: #4ADE80;
+}
+
+.calendar-val.negative {
+    color: #F87171;
+}
+
+/* Sidebar - What Could Move Markets */
+.calendar-sidebar {
+    flex: 0 0 340px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.calendar-sidebar-title {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 14px;
+}
+
+/* Market Event Cards */
+.calendar-market-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-market-item {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.calendar-market-item:first-child {
+    padding-top: 0;
+}
+
+.calendar-market-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.calendar-market-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.calendar-market-badge.high {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.calendar-market-badge.low {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #4ADE80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.calendar-market-name {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.calendar-market-date {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Calendar Responsive */
+@media (max-width: 1024px) {
+    .calendar-layout {
+        flex-direction: column;
+    }
+
+    .calendar-sidebar {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-section {
+        padding: 60px 0;
+    }
+
+    .calendar-title {
+        font-size: 32px;
+    }
+
+    .calendar-tabs {
+        gap: 20px;
+    }
+
+    .calendar-tab {
+        font-size: 14px;
+    }
+
+    .calendar-controls {
+        flex-wrap: wrap;
+    }
+
+    .calendar-controls-right {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .calendar-sidebar {
+        padding: 20px;
+    }
+
+    .calendar-sidebar-title {
+        font-size: 18px;
+    }
+}
