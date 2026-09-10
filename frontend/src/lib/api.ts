@@ -113,22 +113,17 @@ export async function fetchLosers() {
   return typeof raw === 'string' ? JSON.parse(raw) : raw;
 }
 
-export function getStrapiMediaUrl(path?: string, format?: string): string {
+export function getStrapiMediaUrl(path?: string): string {
   if (!path) return '';
-  let fullUrl: string;
   if (path.startsWith('http')) {
     try {
       const url = new URL(path);
-      fullUrl = `${STRAPI_BASE}${url.pathname}${url.search}`;
+      // console.log(`${STRAPI_BASE}${url.pathname}${url.search}`);
+
+      return `${STRAPI_BASE}${url.pathname}${url.search}`;
     } catch (e) {
-      fullUrl = path;
+      return path;
     }
-  } else {
-    fullUrl = STRAPI_BASE + path;
   }
-  if (format) {
-    const separator = fullUrl.includes('?') ? '&' : '?';
-    return `${fullUrl}${separator}format=${format}`;
-  }
-  return fullUrl;
+  return STRAPI_BASE + path;
 }

@@ -64,7 +64,7 @@ export default function Footer({ footerData }: { footerData: FooterData | null }
         <div className="footer-top">
           <div className="footer-logo">
             <div className="footer-logo-placeholder">
-              <Image src={logoUrl ? (logoUrl.includes('?') ? logoUrl + '&format=webp' : logoUrl + '?format=webp') : '/images/hdfc_white_logo.svg'} alt="HDFC Securities" width={160} height={40} style={{ width: '100%', height: 'auto' }} />
+              <Image src={logoUrl} alt="HDFC Securities" width={160} height={40} style={{ width: '100%', height: 'auto' }} />
             </div>
           </div>
           <p
@@ -92,7 +92,7 @@ export default function Footer({ footerData }: { footerData: FooterData | null }
               >
                 {iconUrl && (
                   <Image
-                    src={iconUrl ? (iconUrl.includes('?') ? iconUrl + '&format=webp' : iconUrl + '?format=webp') : ''}
+                    src={iconUrl}
                     alt=""
                     className="footer-quick-link-icon"
                     width={24}

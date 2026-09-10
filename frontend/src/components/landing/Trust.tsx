@@ -1,5 +1,4 @@
 'use client';
-import '@/styles/Trust.css';
 
 import CountUp from './CountUp';
 

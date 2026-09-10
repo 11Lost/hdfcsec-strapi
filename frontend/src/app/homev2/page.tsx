@@ -115,7 +115,7 @@ export default async function HomeV2Page() {
     heroCtaLink = heroBanner.BannerBtn.link || '#';
   }
   if (heroBanner?.BannerImg) {
-    heroMediaUrl = getStrapiMediaUrl(heroBanner.BannerImg.url, 'webp');
+    heroMediaUrl = getStrapiMediaUrl(heroBanner.BannerImg.url);
     heroMediaMime = heroBanner.BannerImg.mime || '';
     heroMediaAlt = heroBanner.BannerImg.alternativeText || 'Hero Banner';
   }

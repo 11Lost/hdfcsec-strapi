@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 // Dynamic imports with ssr: false - only runs on client
@@ -46,29 +47,27 @@ export default function HomeSections({
     <>
       <section className="hero">
         <div className="hero-media">
-          {/* {heroMediaMime.startsWith('video') || !heroMediaUrl ? (
-            <video
-              className="hero-bg-video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              fetchPriority="high"
-            >
+          {heroMediaMime.startsWith('video') ? (
+            <video className="hero-bg-video" autoPlay muted loop playsInline preload="metadata">
               <track kind="captions" srcLang="en" label="English" default />
-              <source src={heroMediaUrl || '/video/hero_bg_video.mp4'} type={heroMediaMime || 'video/mp4'} />
+              <source src={heroMediaUrl} type={heroMediaMime} />
             </video>
-          ) : (
-            <img
+          ) : heroMediaUrl ? (
+            <Image
               className="hero-bg-image"
               src={heroMediaUrl}
               alt={heroMediaAlt}
-              fetchPriority="high"
-              decoding="async"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              width={1920}
+              height={1080}
+              sizes="100vw"
+              priority
             />
-          )} */}
+          ) : (
+            <video className="hero-bg-video" autoPlay muted loop playsInline preload="metadata">
+              <track kind="captions" srcLang="en" label="English" default />
+              <source src="/video/hero_bg_video.mp4" type="video/mp4" />
+            </video>
+          )}
         </div>
         <div className="container">
           <div className="hero-content">

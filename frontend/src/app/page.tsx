@@ -1,9 +1,11 @@
+import Ticker from '@/components/landing/Ticker';
 import MarketIndices from '@/components/landing/MarketIndices';
-import Investing from '@/components/landing/Investing';
+import Image from 'next/image';
 import { fetchHomePage, getStrapiMediaUrl, fetchNSEIndices } from '@/lib/api';
+import { preload } from 'react-dom';
 import dynamic from 'next/dynamic';
 
-const Ticker = dynamic(() => import('@/components/landing/Ticker'));
+const Investing = dynamic(() => import('@/components/landing/Investing'));
 const Products = dynamic(() => import('@/components/landing/Products'));
 const CalendarEvent = dynamic(() => import('@/components/landing/CalendarEvent'));
 const Insights = dynamic(() => import('@/components/landing/Insights'));
@@ -132,53 +134,37 @@ export default async function HomePage() {
     heroCtaLink = heroBanner.BannerBtn.link || '#';
   }
   if (heroBanner?.BannerImg) {
-    heroMediaUrl = getStrapiMediaUrl(heroBanner.BannerImg.url, 'webp');
+    heroMediaUrl = getStrapiMediaUrl(heroBanner.BannerImg.url);
     heroMediaMime = heroBanner.BannerImg.mime || '';
     heroMediaAlt = heroBanner.BannerImg.alternativeText || 'Hero Banner';
   }
 
-  // Determine the LCP video source for preloading
-  const heroVideoSrc = heroMediaMime.startsWith('video') && heroMediaUrl
-    ? heroMediaUrl
-    : !heroMediaUrl
-      ? '/video/hero_bg_video.mp4'
-      : null;
-  const heroVideoType = heroMediaMime.startsWith('video') ? heroMediaMime : 'video/mp4';
+  if (heroMediaMime.startsWith('video') || !heroMediaUrl) {
+    preload('/images/hero_bg.jpg', { as: 'image' });
+  }
 
   return (
     <>
-      {/* Preload the LCP video source so the browser discovers it from the initial HTML */}
-      {heroVideoSrc && (
-        <head>
-          <link rel="preload" href={heroVideoSrc} as="video" type={heroVideoType} />
-        </head>
-      )}
       <section className="hero">
         <div className="hero-media">
-          {heroVideoSrc ? (
-            /* LCP element: native <video> with fetchpriority=high */
-            <video
-              className="hero-bg-video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              fetchPriority="high"
-            >
-              <source src={heroVideoSrc} type={heroVideoType} />
+          <Image
+            className="hero-bg-image"
+            src={heroMediaUrl && !heroMediaMime.startsWith('video') ? heroMediaUrl : '/images/hero_bg.jpg'}
+            alt={heroMediaAlt || 'Hero Background'}
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+          />
+          {heroMediaMime.startsWith('video') ? (
+            <video className="hero-bg-video" autoPlay muted loop playsInline preload="none">
+              <source src={heroMediaUrl} type={heroMediaMime} />
             </video>
-          ) : (
-            /* LCP element: static hero image with fetchpriority=high */
-            <img
-              className="hero-bg-image"
-              src={heroMediaUrl || '/images/hero_bg.jpg'}
-              alt={heroMediaAlt || 'Hero Background'}
-              fetchPriority="high"
-              decoding="async"
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          )}
+          ) : !heroMediaUrl ? (
+            <video className="hero-bg-video" autoPlay muted loop playsInline preload="none">
+              <source src="/video/hero_bg_video.mp4" type="video/mp4" />
+            </video>
+          ) : null}
         </div>
         <div className="container">
           <div className="hero-content">

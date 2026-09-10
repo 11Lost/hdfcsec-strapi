@@ -163,7 +163,7 @@ export default function Investing({ data }: InvestingProps) {
                       <div className="investing-card-image">
                         {img && (
                           <Image
-                            src={getStrapiMediaUrl(img.url, 'webp')}
+                            src={getStrapiMediaUrl(img.url)}
                             alt={img.alternativeText || 'Investing Slide'}
                             width={800}
                             height={500}
@@ -197,7 +197,7 @@ export default function Investing({ data }: InvestingProps) {
                   <div className="way-card-image">
                     {img && (
                       <Image
-                        src={getStrapiMediaUrl(img.url, 'webp')}
+                        src={getStrapiMediaUrl(img.url)}
                         alt={img.alternativeText || 'Way card'}
                         width={300}
                         height={200}
@@ -224,7 +224,7 @@ export default function Investing({ data }: InvestingProps) {
           <div className="toast-content">
             <div className="toast-icon">
               {bb.BannerImg && (
-                <Image src={getStrapiMediaUrl(bb.BannerImg.url, 'webp')} alt="Toast Icon" width={24} height={24} style={{ width: 24, height: 24, objectFit: 'contain' }} />
+                <Image src={getStrapiMediaUrl(bb.BannerImg.url)} alt="Toast Icon" width={24} height={24} style={{ width: 24, height: 24, objectFit: 'contain' }} />
               )}
             </div>
             <div className="toast-text" dangerouslySetInnerHTML={{ __html: stripImgTags(bb.bannerContent || '') }} />

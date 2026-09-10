@@ -1,5 +1,4 @@
 'use client';
-import '@/styles/Products.css';
 
 import Image from 'next/image';
 import { getStrapiMediaUrl } from '@/lib/api';
@@ -37,7 +36,7 @@ export default function Products({ data }: ProductsProps) {
                 <div className="product-icon">
                   {img && (
                     <Image
-                      src={getStrapiMediaUrl(img.url, 'webp')}
+                      src={getStrapiMediaUrl(img.url)}
                       alt={img.alternativeText || product.title || ''}
                       width={56}
                       height={56}

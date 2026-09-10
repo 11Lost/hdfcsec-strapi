@@ -1,11 +1,10 @@
 'use client';
-import '@/styles/Hero.css';
 
 export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-media">
-        <video className="hero-bg-video" autoPlay muted loop playsInline preload="auto" fetchPriority="high">
+        <video className="hero-bg-video" autoPlay muted loop playsInline>
           <track kind="captions" srcLang="en" label="English" default />
           <source src="/video/hero_bg_video.mp4" type="video/mp4" />
         </video>

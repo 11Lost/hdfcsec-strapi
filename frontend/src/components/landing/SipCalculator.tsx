@@ -1,5 +1,4 @@
 'use client';
-import '@/styles/SipCalculator.css';
 import { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
