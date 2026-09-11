@@ -1,6 +1,6 @@
 'use client';
 import '@/styles/SipCalculator.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -33,6 +33,11 @@ export default function SipCalculator() {
   const [searchQuery, setSearchQuery] = useState<string>('Reliance Industries Pvt Ltd');
   const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
   const [selectedSymbol, setSelectedSymbol] = useState<string>('RELIANCE.NS');
+  // True while the user is manually typing a search; blocks autocomplete
+  // fetches and result-name overwrites while they do.
+  const searchDirtyRef = useRef(false);
+  const searchQueryRef = useRef(searchQuery);
+  const searchFocusedRef = useRef(false);
 
   const [debouncedAmount, setDebouncedAmount] = useState(amount);
 
@@ -60,11 +65,30 @@ export default function SipCalculator() {
     return () => clearTimeout(handler);
   }, [searchQuery, amount]);
 
-  // Fetch autocomplete suggestions
+  // Keep a mirror of the query so async callbacks can compare it without
+  // becoming stale or re-triggering effects.
+  useEffect(() => {
+    searchQueryRef.current = searchQuery;
+  }, [searchQuery]);
+
+  // Allow typing a raw Yahoo symbol (e.g. "TCS.NS") directly
+  useEffect(() => {
+    const typed = debouncedSearch.trim();
+    if (
+      searchDirtyRef.current && // only while the user is actually typing
+      typed.includes('.') &&
+      /^[A-Za-z0-9.\-]{1,20}$/.test(typed) &&
+      typed.toUpperCase() !== selectedSymbol
+    ) {
+      setSelectedSymbol(typed.toUpperCase());
+    }
+  }, [debouncedSearch, selectedSymbol]);
+
+  // Fetch autocomplete suggestions (only while the user is actually searching)
   useEffect(() => {
     let active = true;
     const fetchSearch = async () => {
-      if (!debouncedSearch.trim() || debouncedSearch === result?.name || debouncedSearch === 'Reliance Industries Pvt Ltd') {
+      if (!searchDirtyRef.current || !debouncedSearch.trim()) {
         if (active) setSearchResults([]);
         return;
       }
@@ -73,7 +97,8 @@ export default function SipCalculator() {
         const data = await res.json();
         if (active) {
           setSearchResults(data.results || []);
-          setIsDropdownOpen(true);
+          // Only open the dropdown if the input actually has focus
+          if (searchFocusedRef.current) setIsDropdownOpen(true);
         }
       } catch {
         if (active) setSearchResults([]);
@@ -81,13 +106,14 @@ export default function SipCalculator() {
     };
     fetchSearch();
     return () => { active = false; };
-  }, [debouncedSearch, result?.name]);
+  }, [debouncedSearch]);
 
   // Fetch real historical data
   useEffect(() => {
     let active = true;
     const fetchHistory = async () => {
       if (!selectedSymbol) return;
+      const typedQuery = searchQueryRef.current;
       setLoading(true);
       setError(null);
       try {
@@ -103,8 +129,12 @@ export default function SipCalculator() {
         const data = await res.json();
         if (active) {
           setResult(data);
-          // Update the search query to show the full name when selected
-          setSearchQuery(data.name);
+          // Show the resolved name, but never clobber text the user is typing
+          if (searchQueryRef.current === typedQuery) {
+            searchQueryRef.current = data.name;
+            searchDirtyRef.current = false;
+            setSearchQuery(data.name);
+          }
         }
       } catch (err) {
         if (active) setError(err instanceof Error ? err.message : 'Unknown error');
@@ -243,9 +273,19 @@ export default function SipCalculator() {
                   placeholder="Search any stock, MF, F&O (E.g: Reliance Industries Pvt Ltd)"
                   aria-label="Search for a stock or scheme"
                   value={searchQuery}
-                  onFocus={() => { if (searchResults.length > 0) setIsDropdownOpen(true); }}
-                  onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => {
+                    searchFocusedRef.current = true;
+                    if (searchResults.length > 0) setIsDropdownOpen(true);
+                  }}
+                  onBlur={() => {
+                    searchFocusedRef.current = false;
+                    setTimeout(() => setIsDropdownOpen(false), 200);
+                  }}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    searchQueryRef.current = e.target.value;
+                    searchDirtyRef.current = true;
+                  }}
                 />
 
                 {isDropdownOpen && searchResults.length > 0 && (
@@ -269,6 +309,9 @@ export default function SipCalculator() {
                         onClick={() => {
                           setSelectedSymbol(item.symbol);
                           setSearchQuery(item.name);
+                          searchQueryRef.current = item.name;
+                          searchDirtyRef.current = false;
+                          setSearchResults([]); // avoid reopening with stale results
                           setIsDropdownOpen(false);
                         }}
                         style={{
@@ -320,7 +363,7 @@ export default function SipCalculator() {
                   {mode === 'SIP' ? '₹ 100' : '₹ 500'}
                 </span>
                 <span className="sip-slider-label">
-                  {mode === 'SIP' ? '₹ 1 Lakh' : '₹ 10Cr'}
+                  {mode === 'SIP' ? '₹ 1 Lakh' : '₹ 1 Crore'}
                 </span>
               </div>
 
