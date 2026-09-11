@@ -1,4 +1,5 @@
 'use client';
+import '@/styles/Learn.css';
 
 import { useEffect, useRef, useState } from 'react';
 

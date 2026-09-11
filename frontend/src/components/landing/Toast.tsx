@@ -1,4 +1,5 @@
 'use client';
+import '@/styles/Investing.css';
 
 import { useState, useEffect, useRef } from 'react';
 

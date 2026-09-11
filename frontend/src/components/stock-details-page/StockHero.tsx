@@ -12,7 +12,7 @@ export default function StockHero({ data }: { data?: any }) {
               <div 
                 className="stock-hero-logo" 
                 style={{ 
-                  backgroundImage: `url(${getStrapiMediaUrl(data.icon.url)})`, 
+                  backgroundImage: `url(${getStrapiMediaUrl(data.icon.url, 'webp')})`, 
                   backgroundSize: 'cover', 
                   backgroundPosition: 'center', 
                   backgroundRepeat: 'no-repeat', 

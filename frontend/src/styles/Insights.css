@@ -1,0 +1,409 @@
+/* Insights Section Styles */
+.insights-section {
+    padding: 80px 0;
+    background-color: var(--color-white);
+}
+
+.insights-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    gap: 40px;
+}
+
+.insights-title {
+    font-family: 'Inter-Bold', 'Inter-SemiBold', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+    flex-shrink: 0;
+    background: linear-gradient(to right, #111827 0%, #E02424 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.insights-title span {
+    color: var(--color-red);
+}
+
+.insights-subtitle {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 16px;
+    color: #6B7280;
+    line-height: 1.6;
+    max-width: 420px;
+    text-align: right;
+    padding-top: 8px;
+}
+
+/* Accordion Container */
+.insights-accordion {
+    display: flex;
+    gap: 20px;
+    height: 312px;
+}
+
+/* Card Base */
+.insights-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+}
+
+.insights-card:not(.active) {
+    flex: 0 0 288px;
+}
+
+.insights-card.active {
+    flex: 1;
+}
+
+/* Compact State (default for inactive) */
+.card-compact {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 24px;
+    height: 100%;
+    min-height: 312px;
+    background: #004C8F;
+    border-radius: 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease 0.1s;
+}
+
+.card-compact-image {
+    width: 130px;
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-top: auto;
+}
+
+.insights-card.active .card-compact {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.card-compact-title {
+    font-family: 'Inter-SemiBold', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-white);
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.card-compact-desc {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+}
+
+/* Expanded State (default for active) */
+.card-expanded {
+    display: flex;
+    background: transparent url('/images/sector_bg.webp') no-repeat center center;
+    background-size: cover;
+    border: 1px solid #BFDBFE;
+    border-radius: 20px;
+    padding: 32px;
+    height: 312px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: opacity 0.3s ease;
+}
+
+.insights-card.active .card-expanded {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+    transition: opacity 0.3s ease 0.15s;
+}
+
+.card-expanded-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.card-expanded-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.card-expanded-title {
+    font-family: 'Inter-Bold', sans-serif;
+    font-size: 28px;
+    color: #111827;
+    line-height: 1.3;
+}
+
+.card-expanded-desc {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: #4B5563;
+    line-height: 20px;
+    margin-bottom: 24px;
+}
+
+.card-expanded-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    right: -40px;
+    bottom: -30px;
+}
+
+.card-expanded-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 280px;
+}
+
+/* Badge Styles */
+.insights-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-left: 16px;
+    position: absolute;
+    right: 40px;
+    top: 35px;
+    border-radius: 4px;
+}
+
+.insights-badge.bullish {
+    background-color: #B4EED8;
+    color: #057A55;
+}
+
+.insights-badge.high-risk {
+    background-color: #FFF7F7;
+    color: #E02424;
+}
+
+.insights-badge.bearish {
+    background-color: #FFF7F7;
+    color: #E02424;
+}
+
+.insights-badge.neutral {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+/* Stock Tags */
+.insights-stocks {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 70px;
+    flex-wrap: wrap;
+}
+
+.insights-stocks-label {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: #374151;
+}
+
+.insights-stock-tag {
+    display: inline-block;
+    padding: 4px 7px;
+    background: #CDE8FF;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 12px;
+    color: #374151;
+}
+
+.insights-stock-more {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 13px;
+    color: #6B7280;
+}
+
+/* Read Full Report Link */
+.insights-link {
+    font-family: 'Inter-Regular', sans-serif;
+    font-size: 14px;
+    color: var(--color-red);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.insights-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Insights Responsive */
+@media (max-width: 1024px) {
+    .insights-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .insights-subtitle {
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .insights-accordion {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .insights-card,
+    .insights-card:not(.active) {
+        flex: none;
+        width: 100%;
+    }
+
+    .insights-card.active {
+        flex: none;
+        width: 100%;
+    }
+
+    .card-compact,
+    .insights-card.active .card-compact {
+        min-height: auto;
+        padding: 28px;
+    }
+
+    .card-expanded,
+    .insights-card.active .card-expanded {
+        min-height: auto;
+        padding: 28px;
+        flex-direction: column;
+    }
+
+    .card-expanded-image {
+        flex: none;
+        max-height: 200px;
+        margin-top: 20px;
+    }
+
+    .insights-card:not(.active):hover,
+    .insights-card.active:hover {
+        flex: inherit;
+    }
+
+    .card-expanded {
+        display: none;
+    }
+
+    .insights-card.active .card-expanded {
+        display: flex;
+        position: relative;
+    }
+
+    .card-compact {
+        display: flex;
+    }
+
+    .insights-card.active .card-compact {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .insights-section {
+        padding: 30px 0;
+    }
+
+    .insights-title {
+        font-size: 32px;
+    }
+
+    .card-expanded {
+        height: auto;
+    }
+
+    .card-expanded-title {
+        font-size: 22px;
+    }
+
+    .card-compact-title {
+        font-size: 20px;
+    }
+
+    .card-expanded-top {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .insights-badge {
+        margin-left: 0;
+        align-self: flex-start;
+    }
+
+    .insights-accordion {
+        height: auto;
+    }
+
+    .insights-header {
+        margin-bottom: 20px;
+    }
+
+    .insights-stocks {
+        margin-bottom: 10px;
+    }
+
+    .insights-stocks-label {
+        font-size: 12px;
+    }
+
+    .insights-stocks {
+        gap: 4px;
+    }
+
+    .card-expanded-desc {
+        font-size: 12px;
+        line-height: 14px;
+        margin-bottom: 10px;
+    }
+
+    .insights-link {
+        font-size: 12px;
+    }
+
+    .card-expanded-image {
+        right: 0;
+        bottom: 0;
+        justify-content: end;
+    }
+
+    .card-expanded-image img {
+        max-height: none;
+        max-width: 150px;
+    }
+}

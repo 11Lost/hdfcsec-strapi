@@ -1,14 +1,25 @@
 'use client';
 
 import { useEffect } from 'react';
-import Swiper from 'swiper/bundle';
-import 'swiper/swiper-bundle.css';
-import Chart from 'chart.js/auto';
 
 export default function VendorInit() {
   useEffect(() => {
-    (window as any).Swiper = Swiper;
-    (window as any).Chart = Chart;
+    // Load swiper CSS asynchronously to avoid render-blocking
+    if (!document.querySelector('link[href*="swiper"]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/swiper.css';
+      document.head.appendChild(link);
+    }
+
+    // Defer heavy library imports to avoid forced reflows during hydration
+    Promise.all([
+      import('swiper/bundle'),
+      import('chart.js/auto'),
+    ]).then(([swiperModule, chartModule]) => {
+      (window as any).Swiper = swiperModule.default;
+      (window as any).Chart = chartModule.default;
+    });
   }, []);
 
   return null;
